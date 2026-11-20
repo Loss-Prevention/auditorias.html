@@ -3,131 +3,632 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Sistema LP MXRC03</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Acta y Formato de Salida - MXRC03</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    :root {
+      --primary-color: #FFF700;
+      --primary-dark: #e6df00;
+      --accent-color: #000000;
+      --bg-color: #474747;
+      --text-main: #2d3436;
+      --text-secondary: #636e72;
+      --card-bg: #ffffff;
+      --border-radius-lg: 20px;
+      --border-radius-sm: 10px;
+      --shadow-card: 0 10px 20px rgba(0,0,0,0.15);
     }
 
-    body {
-      background-color: #0B0E14;
+    * { box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
+    
+    body { 
+      margin: 0; 
+      background: var(--bg-color); 
+      display: flex; 
+      justify-content: center; 
+      padding: 20px; 
+      color: var(--text-main);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      color: #E2E8F0;
     }
 
-    .card {
-      background-color: #121824;
-      border: 1px solid #1E293B;
-      border-radius: 18px;
+    .main-wrapper {
       width: 100%;
-      max-width: 440px;
-      padding: 44px 36px 36px 36px;
-      text-align: center;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .avatar-wrapper {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 64px;
-      background-color: #211B38;
-      border-radius: 50%;
-      margin-bottom: 22px;
+    .main-header { 
+      background: var(--card-bg);
+      padding: 25px; 
+      text-align: center; 
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-card);
+      border-left: 6px solid var(--primary-color);
     }
 
-    .avatar-wrapper svg {
-      width: 32px;
-      height: 32px;
-      fill: #8B5CF6;
+    .main-header h1 { 
+      margin: 0; 
+      font-size: 24px; 
+      font-weight: 800;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .main-header p { margin: 5px 0 0; font-size: 14px; color: var(--text-secondary); font-weight: 600; }
+
+    .body-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    h1 {
-      font-size: 22px;
+    .form-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 25px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card-title {
+      font-size: 18px;
       font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 8px;
-      letter-spacing: -0.3px;
-    }
-
-    .subtitle {
-      font-size: 13.5px;
-      color: #94A3B8;
-      margin-bottom: 24px;
-    }
-
-    .bookmark-hint {
+      color: #111;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background-color: rgba(30, 41, 59, 0.6);
-      border: 1px dashed #334155;
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 24px;
-      font-size: 12.5px;
-      color: #CBD5E1;
-    }
-
-    .bookmark-hint kbd {
-      background: #0F172A;
-      border: 1px solid #475569;
-      border-radius: 4px;
-      padding: 2px 6px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #F8FAFC;
-    }
-
-    .btn-submit {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 10px;
-      width: 100%;
-      background: linear-gradient(180deg, #F59E0B 0%, #D97706 100%);
-      color: #000000;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 14px 20px;
-      border-radius: 9px;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-group { margin-bottom: 15px; }
+
+    label { 
+      font-size: 12px; 
+      color: var(--text-secondary); 
+      display: block; 
+      margin-bottom: 6px; 
+      font-weight: 600; 
+      text-transform: uppercase;
+    }
+
+    input, select { 
+      width: 100%; 
+      padding: 12px 15px; 
+      border: 2px solid #e1e1e1; 
+      border-radius: var(--border-radius-sm); 
+      outline: none; 
+      font-size: 14px;
+      color: var(--text-main);
+      background-color: #fbfbfb;
+    }
+
+    input:focus, select:focus { 
+      border-color: #111; 
+      background-color: #ffffff;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      background: #f1f3f4;
+      border: 2px dashed #ccc;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
-      border: none;
+    }
+    
+    input[type="file"]:hover {
+      border-color: #111;
+      background: #fffde0;
     }
 
-    .btn-submit:hover {
-      background: linear-gradient(180deg, #FBBF24 0%, #E58607 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.45);
+    .btn-submit { 
+      width: 100%; 
+      padding: 18px; 
+      background: var(--primary-color);
+      color: #000000; 
+      border: none; 
+      border-radius: var(--border-radius-lg); 
+      font-size: 18px; 
+      font-weight: 800; 
+      cursor: pointer; 
+      margin-top: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
 
-    .btn-submit:active {
-      transform: translateY(0);
+    .btn-submit:hover { background: var(--primary-dark); }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+    #spinner { 
+      display: none; 
+      text-align: center; 
+      color: #111; 
+      font-weight: bold;
+      background: white;
+      padding: 15px;
+      border-radius: var(--border-radius-sm);
+    }
+    
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #111;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px auto;
     }
 
-    .btn-submit svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* =========================================================
+       ESTILOS DE PLANTILLAS DE IMPRESIÓN (OCULTOS EN PANTALLA)
+       ========================================================= */
+    #print-area { display: none; }
+
+    @media print {
+      body { background: white !important; padding: 0 !important; margin: 0 !important; display: block !important; }
+      .main-wrapper { display: none !important; }
+      #print-area { display: block !important; width: 100%; font-family: Arial, sans-serif !important; color: #000; }
+      
+      .page-break { page-break-after: always; }
+      
+      /* Estilos Hoja 1: Acta */
+      .acta-container { padding: 30px 40px; font-family: Arial, sans-serif; }
+      .acta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
+      .acta-folio-box { text-align: left; font-weight: bold; font-style: italic; font-size: 13px; }
+      .acta-title { text-align: center; font-weight: bold; font-style: italic; font-size: 15px; margin: 20px 0; }
+      .acta-tipo { text-align: center; font-weight: bold; font-style: italic; font-size: 14px; margin-bottom: 30px; }
+      .acta-body { font-size: 13px; line-height: 1.6; text-align: justify; margin-bottom: 60px; }
+      .firmas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px 40px; margin-top: 40px; text-align: center; font-style: italic; font-size: 12px; }
+      .firma-linea { border-top: 1px solid #000; padding-top: 5px; margin-top: 35px; }
+
+      /* Estilos Hoja 2: Formato de Salida y Fotos */
+      .formato-container { padding: 15px; font-family: Arial, sans-serif; font-size: 11px; }
+      .formato-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+      .formato-table th { background: #000 !important; color: #fff !important; padding: 5px; text-align: center; font-size: 11px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .formato-table td { border: 1px solid #ccc; padding: 4px 6px; vertical-align: middle; }
+      .td-label { font-weight: bold; width: 18%; background: #f9f9f9 !important; -webkit-print-color-adjust: exact; }
+      .td-val { width: 22%; text-align: center; }
+      .fotos-ine { display: flex; justify-content: space-around; align-items: center; gap: 10px; padding: 5px; }
+      .fotos-ine img { max-height: 155px; max-width: 48%; object-fit: contain; border: 1px solid #ddd; }
+      .evidencia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; border: 1px solid #ccc; }
+      .evidencia-item { text-align: center; }
+      .evidencia-item img { width: 100%; height: 150px; object-fit: cover; border: 1px solid #999; }
+      .evidencia-item span { display: block; font-size: 10px; font-weight: bold; margin-top: 3px; }
     }
 
-    .footer-note {
-      margin-top: 24px
+    @media (max-width: 600px) {
+      .grid-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <div class="main-header">
+    <h1>📋 ACTA Y FORMATO DE SALIDA</h1>
+    <p>Loss Prevention MXRC03</p>
+  </div>
+  
+  <form id="formulario" class="body-form">
+    <div class="form-card">
+      <div class="card-title"><span>📝</span><span>Información General</span></div>
+      <div class="grid-row">
+        <div class="form-group">
+          <label>Tipo de Salida</label>
+          <select name="tipoSalida" required>
+            <option value="">Seleccione...</option>
+            <option value="Donación">Donación</option>
+            <option value="Destrucción">Destrucción</option>
+            <option value="Reciclaje">Reciclaje</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Número de Acta (Folio)</label>
+          <input type="text" name="folio" required placeholder="Ej: 026">
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>⏱️ Hora Inicio</label>
+          <input type="time" name="hrinicio" required>
+        </div>
+        <div class="form-group">
+          <label>🏁 Hora Finalización</label>
+          <input type="time" name="hrfinalizacion" required>
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>📦 Total de ID's / Tarimas</label>
+          <input type="number" name="totalIds" value="1" required>
+        </div>
+        <div class="form-group">
+          <label>🔢 Total de Piezas</label>
+          <input type="number" name="totalPiezas" value="0" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title"><span>👥</span><span>Responsables de Proceso</span></div>
+      <div class="grid-row">
+        <div class="form-group">
+          <label>TL Retiros</label>
+          <input type="text" name="teamResponsable" required placeholder="Nombre del Team Leader">
+        </div>
+        <div class="form-group">
+          <label>Responsable de Carga</label>
+          <input type="text" name="responsableCarga" required placeholder="Nombre del despachador">
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>Auditor LP</label>
+          <input type="text" name="auditorLP" required placeholder="Auditor presente">
+        </div>
+        <div class="form-group">
+          <label>Testigo de LP</label>
+          <input type="text" name="testigoLP">
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>Testigo Retiros 1°</label>
+          <input type="text" name="testigo1">
+        </div>
+        <div class="form-group">
+          <label>Testigo Retiros 2°</label>
+          <input type="text" name="testigo2">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title"><span>🚛</span><span>Datos del Vehículo</span></div>
+      <div class="form-group">
+        <label>Nombre de Operador</label>
+        <input type="text" name="nombreOperador" required>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>Tipo de Unidad</label>
+          <input type="text" name="tipoUnidad" required>
+        </div>
+        <div class="form-group">
+          <label>🔢 Placas</label>
+          <input type="text" name="placas" required>
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>Cortina</label>
+          <input type="text" name="cortina">
+        </div>
+        <div class="form-group">
+          <label>Número de Marchamos</label>
+          <input type="text" name="marchamo" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>💬 Observaciones</label>
+        <input type="text" name="observaciones">
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="card-title"><span>📸</span><span>Evidencia Fotográfica</span></div>
+      <div class="grid-row">
+        <div class="form-group">
+          <label>🆔 Foto INE 1 (Frente)</label>
+          <input type="file" id="foto1" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label>🆔 Foto INE 2 (Reverso)</label>
+          <input type="file" id="foto2" accept="image/*">
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>📦 Unidad Vacía</label>
+          <input type="file" id="foto3" accept="image/*">
+        </div>      
+        <div class="form-group">
+          <label>🚚 Unidad Llena</label>
+          <input type="file" id="foto4" accept="image/*">
+        </div>
+      </div>
+
+      <div class="grid-row">
+        <div class="form-group">
+          <label>🔒 Marchamo 1</label>
+          <input type="file" id="foto5" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label>🔒 Marchamo 2</label>
+          <input type="file" id="foto6" accept="image/*">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>🔒 Marchamo 3</label>
+        <input type="file" id="foto7" accept="image/*">
+      </div>
+    </div>
+
+    <div id="spinner">
+      <div class="loader"></div>
+      <div>Guardando registro y preparando PDF...</div>
+    </div>
+
+    <button type="button" class="btn-submit" onclick="enviar()">
+      <span>🖨️</span> Guardar e Imprimir PDF
+    </button>
+  </form>
+</div>
+
+<!-- =========================================================
+     PLANTILLAS OCULTAS QUE SE IMPRIMEN EN PDF AL ENVIAR
+     ========================================================= -->
+<div id="print-area">
+  <!-- HOJA 1: ACTA -->
+  <div class="acta-container page-break">
+    <div class="acta-header">
+      <div>
+        <!-- Puedes poner aquí tu logo en PNG/SVG o URL -->
+        <strong style="font-size: 20px; color: #2d3277;">mercado envíos</strong>
+      </div>
+      <div class="acta-folio-box">
+        <div>FOLIO: &nbsp;&nbsp;&nbsp;<span id="p-folio-header"></span></div>
+        <div>FECHA: &nbsp;&nbsp;&nbsp;<span id="p-fecha-larga"></span></div>
+      </div>
+    </div>
+
+    <div class="acta-title">
+      CONSTANCIA DE CONTEO DE PRODUCTOS DE REZAGO<br>RETIROS
+    </div>
+
+    <div class="acta-tipo">
+      TIPO DE SALIDA: &nbsp;&nbsp;&nbsp;<span id="p-tipo-salida"></span>
+    </div>
+
+    <div class="acta-body">
+      <p>
+        En el Estado de México, del día <span id="p-fecha-corta"></span>, en el RC03 ubicado en Camino de Rancho Nuevo La Virgen, Hacienda del Jardín, 54984 Cuautitlán, Estado de México, se procede a levantar la presente acta.
+      </p>
+      <p>
+        Hace constar el confinamiento de <span id="p-ids">1</span> ID's con un total de <span id="p-piezas">0</span> piezas que se detallan en el archivo "tracking LI Rezagos MXRC03" compartido por el área, haciendo mención de la auditoría realizada por parte del equipo de Loss Prevention correspondiente al Lote establecido por el área de Retiros de Receiving Center.
+      </p>
+    </div>
+
+    <div class="firmas-grid">
+      <div>
+        <div id="p-firma-team">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de RETIROS</div>
+      </div>
+      <div>
+        <div id="p-firma-desp">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de RETIROS</div>
+      </div>
+      <div>
+        <div id="p-firma-auditor">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de LOSS PREVENTION</div>
+      </div>
+      <div>
+        <div id="p-firma-testigolp">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de LOSS PREVENTION</div>
+      </div>
+      <div>
+        <div id="p-firma-t1">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de TESTIGO</div>
+      </div>
+      <div>
+        <div id="p-firma-t2">&nbsp;</div>
+        <div class="firma-linea">Intervienen en el presente acto, por parte de TESTIGO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOJA 2: FORMATO DE SALIDA RC03 -->
+  <div class="formato-container">
+    <table class="formato-table">
+      <tr>
+        <th colspan="2">DATOS PERSONALES</th>
+        <th colspan="2">IDENTIFICACIÓN DE CONDUCTOR</th>
+      </tr>
+      <tr>
+        <td class="td-label">Fecha de carga:</td>
+        <td class="td-val" id="f-fecha"></td>
+        <td colspan="2" rowspan="8">
+          <div class="fotos-ine">
+            <img id="img-ine1" src="" alt="INE Frente" style="display:none;">
+            <img id="img-ine2" src="" alt="INE Reverso" style="display:none;">
+          </div>
+        </td>
+      </tr>
+      <tr><td class="td-label">Hora de inicio:</td><td class="td-val" id="f-hrinicio"></td></tr>
+      <tr><td class="td-label">Hora de termino:</td><td class="td-val" id="f-hrfin"></td></tr>
+      <tr><td class="td-label">Cortina carga:</td><td class="td-val" id="f-cortina"></td></tr>
+      <tr><td class="td-label">Responsable operaciones:</td><td class="td-val" id="f-resp"></td></tr>
+      <tr><td class="td-label">Auditor LP:</td><td class="td-val" id="f-auditor"></td></tr>
+      <tr><td class="td-label">Total de ID's despachados:</td><td class="td-val" id="f-ids"></td></tr>
+      <tr><td class="td-label">Tipo de carga:</td><td class="td-val" id="f-tipo"></td></tr>
+      <tr><th colspan="2">DATOS DE LA UNIDAD</th><th colspan="2" rowspan="7"></th></tr>
+      <tr><td class="td-label">Chofer:</td><td class="td-val" id="f-chofer"></td></tr>
+      <tr><td class="td-label">Tipo de unidad:</td><td class="td-val" id="f-unidad"></td></tr>
+      <tr><td class="td-label">Placas:</td><td class="td-val" id="f-placas"></td></tr>
+      <tr><td class="td-label">Código Marchamos:</td><td class="td-val" id="f-marchamos"></td></tr>
+      <tr><td class="td-label">Observaciones:</td><td class="td-val" id="f-obs"></td></tr>
+      <tr><td class="td-label">Folio:</td><td class="td-val" id="f-folio"></td></tr>
+      <tr><th colspan="4">EVIDENCIA FOTOGRÁFICA</th></tr>
+    </table>
+
+    <div class="evidencia-grid">
+      <div class="evidencia-item" id="box-foto3" style="display:none;"><img id="img-foto3"><span>Unidad Vacía</span></div>
+      <div class="evidencia-item" id="box-foto4" style="display:none;"><img id="img-foto4"><span>Unidad Llena</span></div>
+      <div class="evidencia-item" id="box-foto5" style="display:none;"><img id="img-foto5"><span>Marchamo 1</span></div>
+      <div class="evidencia-item" id="box-foto6" style="display:none;"><img id="img-foto6"><span>Marchamo 2</span></div>
+      <div class="evidencia-item" id="box-foto7" style="display:none;"><img id="img-foto7"><span>Marchamo 3</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// CONFIGURACIÓN: Pega aquí la URL de tu Webhook (Cloudflare Worker -> GitHub Action) o Google Form
+const WEBHOOK_URL = ""; 
+
+async function procesarImagen(file) {
+  if (!file) return null;
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width, height = img.height;
+        const MAX = 1000;
+        if (width > height && width > MAX) { height *= MAX / width; width = MAX; }
+        else if (height > MAX) { width *= MAX / height; height = MAX; }
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.75));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function obtenerFechas() {
+  const hoy = new Date();
+  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  const dia = hoy.getDate();
+  const mes = hoy.getMonth() + 1;
+  const anio = hoy.getFullYear();
+  return {
+    corta: `${dia}/${mes < 10 ? '0'+mes : mes}/${anio}`,
+    larga: `${dia} de ${meses[hoy.getMonth()]} de ${anio}`
+  };
+}
+
+async function enviar() {
+  const form = document.getElementById("formulario");
+  if (!form.checkValidity()) {
+    alert("Por favor rellene todos los campos requeridos.");
+    form.querySelector(':invalid').focus();
+    return;
+  }
+
+  const btn = document.querySelector(".btn-submit");
+  const spinner = document.getElementById("spinner");
+  btn.disabled = true;
+  spinner.style.display = "block";
+
+  try {
+    const datos = Object.fromEntries(new FormData(form).entries());
+    const fechas = obtenerFechas();
+    const folioCompleto = `${datos.folio.padStart(3, '0')}-026`;
+
+    // 1. Llenar Hoja 1 (Acta)
+    document.getElementById("p-folio-header").textContent = folioCompleto;
+    document.getElementById("p-fecha-larga").textContent = fechas.larga;
+    document.getElementById("p-fecha-corta").textContent = fechas.corta;
+    document.getElementById("p-tipo-salida").textContent = datos.tipoSalida;
+    document.getElementById("p-ids").textContent = datos.totalIds;
+    document.getElementById("p-piezas").textContent = datos.totalPiezas;
+    document.getElementById("p-firma-team").textContent = datos.teamResponsable || "\u00A0";
+    document.getElementById("p-firma-desp").textContent = datos.responsableCarga || "\u00A0";
+    document.getElementById("p-firma-auditor").textContent = datos.auditorLP || "\u00A0";
+    document.getElementById("p-firma-testigolp").textContent = datos.testigoLP || "\u00A0";
+    document.getElementById("p-firma-t1").textContent = datos.testigo1 || "\u00A0";
+    document.getElementById("p-firma-t2").textContent = datos.testigo2 || "\u00A0";
+
+    // 2. Llenar Hoja 2 (Formato)
+    document.getElementById("f-fecha").textContent = fechas.corta;
+    document.getElementById("f-hrinicio").textContent = datos.hrinicio;
+    document.getElementById("f-hrfin").textContent = datos.hrfinalizacion;
+    document.getElementById("f-cortina").textContent = datos.cortina;
+    document.getElementById("f-resp").textContent = datos.responsableCarga;
+    document.getElementById("f-auditor").textContent = datos.auditorLP;
+    document.getElementById("f-ids").textContent = datos.totalIds;
+    document.getElementById("f-tipo").textContent = datos.tipoSalida;
+    document.getElementById("f-chofer").textContent = datos.nombreOperador;
+    document.getElementById("f-unidad").textContent = datos.tipoUnidad;
+    document.getElementById("f-placas").textContent = datos.placas;
+    document.getElementById("f-marchamos").textContent = datos.marchamo;
+    document.getElementById("f-obs").textContent = datos.observaciones;
+    document.getElementById("f-folio").textContent = folioCompleto;
+
+    // 3. Cargar Imágenes en las plantillas
+    const mapFotos = [
+      { input: "foto1", img: "img-ine1" },
+      { input: "foto2", img: "img-ine2" },
+      { input: "foto3", img: "img-foto3", box: "box-foto3" },
+      { input: "foto4", img: "img-foto4", box: "box-foto4" },
+      { input: "foto5", img: "img-foto5", box: "box-foto5" },
+      { input: "foto6", img: "img-foto6", box: "box-foto6" },
+      { input: "foto7", img: "img-foto7", box: "box-foto7" }
+    ];
+
+    for (const item of mapFotos) {
+      const file = document.getElementById(item.input).files[0];
+      const imgEl = document.getElementById(item.img);
+      if (file) {
+        imgEl.src = await procesarImagen(file);
+        imgEl.style.display = "block";
+        if (item.box) document.getElementById(item.box).style.display = "block";
+      } else {
+        imgEl.style.display = "none";
+        if (item.box) document.getElementById(item.box).style.display = "none";
+      }
+    }
+
+    // 4. Enviar datos de texto a Google Sheets (vía Webhook o Google Form)
+    if (WEBHOOK_URL) {
+      datos.fechaGeneracion = fechas.corta;
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+      });
+    }
+
+    // 5. Disparar impresión / Guardar como PDF
+    setTimeout(() => {
+      window.print();
+      btn.disabled = false;
+      spinner.style.display = "none";
+    }, 500);
+
+  } catch (e) {
+    alert("Error: " + e.message);
+    btn.disabled = false;
+    spinner.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
