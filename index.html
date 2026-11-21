@@ -277,7 +277,6 @@
       .main-wrapper { display: none !important; }
       #print-area { display: block !important; width: 100%; color: #0F172A; }
 
-      /* Control de visibilidad según el botón presionado */
       #print-area.solo-acta #doc-formato { display: none !important; }
       #print-area.solo-acta #doc-acta { display: block !important; }
 
@@ -357,7 +356,7 @@
         border: 1px solid #CBD5E1;
         background: #F8FAFC !important;
         padding: 12px 16px;
-        margin-bottom: 28px;
+        margin-bottom: 32px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -374,18 +373,18 @@
         letter-spacing: 0.8px;
         border-bottom: 1px solid #CBD5E1;
         padding-bottom: 4px;
-        margin-bottom: 18px;
+        margin-bottom: 24px;
       }
 
       .firmas-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 28px 36px;
+        gap: 40px 36px;
       }
 
       .firma-box {
         text-align: center;
-        padding-top: 22px;
+        padding-top: 28px;
       }
       .firma-nombre {
         font-size: 11.5px;
@@ -585,7 +584,7 @@
   
   <form id="formulario" class="body-form">
     <div class="form-card">
-      <div class="card-title"><span>01.</span><span>Información General del Folio</span></div>
+      <div class="card-title"><span>01.</span><span>Información General del Folio y Fecha</span></div>
       <div class="grid-row">
         <div class="form-group">
           <label>Tipo de Salida</label>
@@ -610,6 +609,11 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label>Fecha de Carga</label>
+        <input type="date" name="fechaCarga" id="fechaCarga" required onchange="actualizarFolioPreview()">
+      </div>
+
       <div class="grid-row">
         <div class="form-group">
           <label>Hora Inicio</label>
@@ -627,33 +631,77 @@
       <div class="grid-row">
         <div class="form-group">
           <label>TL Retiros</label>
-          <input type="text" name="teamResponsable" required placeholder="Nombre completo">
+          <select name="teamResponsable" required>
+            <option value="Ana Paola Cortes" selected>Ana Paola Cortes</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Responsable de Carga</label>
-          <input type="text" name="responsableCarga" required placeholder="Nombre del despachador">
+          <select name="responsableCarga" required>
+            <option value="">Seleccione responsable...</option>
+            <option value="ALBERTO KIRIATAIM DELGADILLO">ALBERTO KIRIATAIM DELGADILLO</option>
+            <option value="AMERICA MONSERRAT ESQUIVEL">AMERICA MONSERRAT ESQUIVEL</option>
+            <option value="ANA CRISTINA CHAVEZ">ANA CRISTINA CHAVEZ</option>
+            <option value="ANDRES TIRSO">ANDRES TIRSO</option>
+            <option value="ATENEA LINARES">ATENEA LINARES</option>
+            <option value="DULCE MARIA ORTIZ">DULCE MARIA ORTIZ</option>
+            <option value="EDUARDO FLORES">EDUARDO FLORES</option>
+            <option value="EMERSON ALEJANDRO SALINAS">EMERSON ALEJANDRO SALINAS</option>
+            <option value="JACQUELINE BOLAÑOS">JACQUELINE BOLAÑOS</option>
+            <option value="JOANNA GRANADOS">JOANNA GRANADOS</option>
+            <option value="JUAN HERNANDEZ">JUAN HERNANDEZ</option>
+            <option value="KLET CAREN DE LA CRUZ">KLET CAREN DE LA CRUZ</option>
+            <option value="LUIS ALBERTO PULIDO">LUIS ALBERTO PULIDO</option>
+            <option value="LUIS DANIEL PRIETO">LUIS DANIEL PRIETO</option>
+            <option value="LUIS ESTEBAN RAMIREZ">LUIS ESTEBAN RAMIREZ</option>
+            <option value="MICHELLE ANGELICA HERNANDEZ">MICHELLE ANGELICA HERNANDEZ</option>
+            <option value="MIRIAM AIDE MARTINEZ">MIRIAM AIDE MARTINEZ</option>
+            <option value="NANCY ALEJANDRA POMPA">NANCY ALEJANDRA POMPA</option>
+            <option value="NELY ORTIZ">NELY ORTIZ</option>
+            <option value="PAMELA BARRANCO">PAMELA BARRANCO</option>
+            <option value="ROSALINDA OROZCO">ROSALINDA OROZCO</option>
+            <option value="VICTOR HUGO TORRES">VICTOR HUGO TORRES</option>
+            <option value="YAZMIN HERNANDEZ">YAZMIN HERNANDEZ</option>
+          </select>
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
           <label>Auditor Loss Prevention</label>
-          <input type="text" name="auditorLP" required placeholder="Auditor presente">
+          <select name="auditorLP" required>
+            <option value="">Seleccione auditor LP...</option>
+            <option value="ARELLANO MERIDA MARGARITA ELVIRA">ARELLANO MERIDA MARGARITA ELVIRA</option>
+            <option value="CRUZ DIMAS RICARDO">CRUZ DIMAS RICARDO</option>
+            <option value="LOPEZ AGUILERA MARIA FERNANDA">LOPEZ AGUILERA MARIA FERNANDA</option>
+            <option value="DURAN ELIZALDE GUILLERMO">DURAN ELIZALDE GUILLERMO</option>
+            <option value="RODEA BECERRIL JOSE ARTURO">RODEA BECERRIL JOSE ARTURO</option>
+            <option value="ROMERO FRAGOSO KATHIA">ROMERO FRAGOSO KATHIA</option>
+            <option value="ROJAS CEDEÑO EFREN DANIEL">ROJAS CEDEÑO EFREN DANIEL</option>
+            <option value="SANCHEZ CRUZ RUFINO">SANCHEZ CRUZ RUFINO</option>
+            <option value="VELAZQUEZ VELAZQUEZ ABRAHAM">VELAZQUEZ VELAZQUEZ ABRAHAM</option>
+            <option value="MAYA VARGAS JOSE ARTURO">MAYA VARGAS JOSE ARTURO</option>
+            <option value="BAUTISTA ORTIZ JOSUE ANDRES">BAUTISTA ORTIZ JOSUE ANDRES</option>
+            <option value="GARCIA PEREZ JOSE DE JESUS">GARCIA PEREZ JOSE DE JESUS</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Testigo Loss Prevention</label>
-          <input type="text" name="testigoLP" placeholder="Opcional">
-        </div>
-      </div>
-
-      <div class="grid-row">
-        <div class="form-group">
-          <label>Testigo Retiros 1°</label>
-          <input type="text" name="testigo1" placeholder="Opcional">
-        </div>
-        <div class="form-group">
-          <label>Testigo Retiros 2°</label>
-          <input type="text" name="testigo2" placeholder="Opcional">
+          <select name="testigoLP">
+            <option value="">Ninguno / Opcional...</option>
+            <option value="ARELLANO MERIDA MARGARITA ELVIRA">ARELLANO MERIDA MARGARITA ELVIRA</option>
+            <option value="CRUZ DIMAS RICARDO">CRUZ DIMAS RICARDO</option>
+            <option value="LOPEZ AGUILERA MARIA FERNANDA">LOPEZ AGUILERA MARIA FERNANDA</option>
+            <option value="DURAN ELIZALDE GUILLERMO">DURAN ELIZALDE GUILLERMO</option>
+            <option value="RODEA BECERRIL JOSE ARTURO">RODEA BECERRIL JOSE ARTURO</option>
+            <option value="ROMERO FRAGOSO KATHIA">ROMERO FRAGOSO KATHIA</option>
+            <option value="ROJAS CEDEÑO EFREN DANIEL">ROJAS CEDEÑO EFREN DANIEL</option>
+            <option value="SANCHEZ CRUZ RUFINO">SANCHEZ CRUZ RUFINO</option>
+            <option value="VELAZQUEZ VELAZQUEZ ABRAHAM">VELAZQUEZ VELAZQUEZ ABRAHAM</option>
+            <option value="MAYA VARGAS JOSE ARTURO">MAYA VARGAS JOSE ARTURO</option>
+            <option value="BAUTISTA ORTIZ JOSUE ANDRES">BAUTISTA ORTIZ JOSUE ANDRES</option>
+            <option value="GARCIA PEREZ JOSE DE JESUS">GARCIA PEREZ JOSE DE JESUS</option>
+          </select>
         </div>
       </div>
     </div>
@@ -812,14 +860,6 @@
           <div class="firma-nombre" id="p-firma-testigolp">&nbsp;</div>
           <div class="firma-linea">Testigo Loss Prevention</div>
         </div>
-        <div class="firma-box">
-          <div class="firma-nombre" id="p-firma-t1">&nbsp;</div>
-          <div class="firma-linea">Testigo de Asistencia 1°</div>
-        </div>
-        <div class="firma-box">
-          <div class="firma-nombre" id="p-firma-t2">&nbsp;</div>
-          <div class="firma-linea">Testigo de Asistencia 2°</div>
-        </div>
       </div>
     </div>
 
@@ -921,9 +961,18 @@
 <script>
 const API_WORKER_URL = "https://acta-rc03-api.abraham-velazquezvelazquez.workers.dev";
 
-// Evita guardar duplicados en Google Sheets si el usuario imprime primero el Acta y luego el Formato
 let ultimoFolioGuardado = "";
 let cacheTotales = { totalIds: 0, totalPiezas: 0 };
+
+// Inicializar la fecha de carga con el día de hoy por defecto (modificable por el usuario)
+window.addEventListener("DOMContentLoaded", () => {
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dd = String(hoy.getDate()).padStart(2, '0');
+  document.getElementById("fechaCarga").value = `${yyyy}-${mm}-${dd}`;
+  actualizarFolioPreview();
+});
 
 function validarTresDigitos(input) {
   input.value = input.value.replace(/\D/g, '');
@@ -939,7 +988,9 @@ function validarTresDigitos(input) {
 function construirFolio() {
   const tipo = document.getElementById("tipoSalida").value;
   const num = document.getElementById("numeroActa").value.trim();
-  const anio3 = String(new Date().getFullYear()).slice(-3);
+  const fechaVal = document.getElementById("fechaCarga").value;
+  const anio = fechaVal ? fechaVal.split("-")[0] : String(new Date().getFullYear());
+  const anio3 = anio.slice(-3);
 
   const prefijos = { "Donación": "DON", "Reciclaje": "REC", "Destrucción": "DES" };
   const prefijo = prefijos[tipo] || "XXX";
@@ -1039,15 +1090,24 @@ function formatearHora12(hora24) {
   return `${h}:${m}:00 ${ampm}`;
 }
 
-function obtenerFechas() {
-  const hoy = new Date();
+function formatearFechaSeleccionada(fechaISO) {
   const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-  const dia = hoy.getDate();
-  const mes = hoy.getMonth() + 1;
-  const anio = hoy.getFullYear();
+  if (!fechaISO) {
+    const hoy = new Date();
+    const d = hoy.getDate();
+    const m = hoy.getMonth() + 1;
+    const a = hoy.getFullYear();
+    return {
+      corta: `${d < 10 ? '0'+d : d}/${m < 10 ? '0'+m : m}/${a}`,
+      larga: `${d} de ${meses[hoy.getMonth()]} de ${a}`
+    };
+  }
+  const [anio, mesStr, diaStr] = fechaISO.split("-");
+  const diaNum = parseInt(diaStr, 10);
+  const mesIdx = parseInt(mesStr, 10) - 1;
   return {
-    corta: `${dia < 10 ? '0'+dia : dia}/${mes < 10 ? '0'+mes : mes}/${anio}`,
-    larga: `${dia} de ${meses[hoy.getMonth()]} de ${anio}`
+    corta: `${diaStr}/${mesStr}/${anio}`,
+    larga: `${diaNum} de ${meses[mesIdx]} de ${anio}`
   };
 }
 
@@ -1076,9 +1136,13 @@ async function procesarYImprimir(tipoDocumento) {
   try {
     const datos = Object.fromEntries(new FormData(form).entries());
     const folioGenerado = construirFolio();
-    const fechas = obtenerFechas();
+    const fechas = formatearFechaSeleccionada(datos.fechaCarga);
 
-    // Consultar SALIDAS 2026 y guardar en Datos solo si este folio no se ha procesado aún en esta sesión
+    // Mantener compatibles las columnas I y J vacías en el envío hacia Sheets
+    datos.testigo1 = "";
+    datos.testigo2 = "";
+    datos.fechaGeneracion = fechas.corta;
+
     if (ultimoFolioGuardado !== folioGenerado) {
       const resp = await fetch(API_WORKER_URL, {
         method: "POST",
@@ -1086,7 +1150,7 @@ async function procesarYImprimir(tipoDocumento) {
         body: JSON.stringify({
           accion: "buscarFolioYGuardar",
           folio: folioGenerado,
-          datosFormulario: { ...datos, fechaGeneracion: fechas.corta }
+          datosFormulario: datos
         })
       });
       const resultado = await resp.json();
@@ -1103,7 +1167,7 @@ async function procesarYImprimir(tipoDocumento) {
 
     const { totalIds, totalPiezas } = cacheTotales;
 
-    // Llenar Acta (Documento 1)
+    // Llenar Acta (Documento 1) con la Fecha de Carga elegida
     document.getElementById("p-folio-header").textContent = folioGenerado;
     document.getElementById("p-fecha-larga").textContent = fechas.larga;
     document.getElementById("p-fecha-corta").textContent = fechas.corta;
@@ -1119,10 +1183,8 @@ async function procesarYImprimir(tipoDocumento) {
     document.getElementById("p-firma-desp").textContent = datos.responsableCarga || "\u00A0";
     document.getElementById("p-firma-auditor").textContent = datos.auditorLP || "\u00A0";
     document.getElementById("p-firma-testigolp").textContent = datos.testigoLP || "\u00A0";
-    document.getElementById("p-firma-t1").textContent = datos.testigo1 || "\u00A0";
-    document.getElementById("p-firma-t2").textContent = datos.testigo2 || "\u00A0";
 
-    // Llenar Formato (Documento 2)
+    // Llenar Formato (Documento 2) con la Fecha de Carga elegida
     document.getElementById("f-header-folio").textContent = folioGenerado;
     document.getElementById("f-fecha").textContent = fechas.corta;
     document.getElementById("f-hrinicio").textContent = formatearHora12(datos.hrinicio);
@@ -1155,7 +1217,6 @@ async function procesarYImprimir(tipoDocumento) {
       }
     }
 
-    // Activar únicamente el documento elegido
     const printArea = document.getElementById("print-area");
     printArea.className = tipoDocumento === "acta" ? "solo-acta" : "solo-formato";
 
