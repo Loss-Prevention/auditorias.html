@@ -3,142 +3,562 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acta y Formato de Salida - MXRC03</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Acta y Formato de Salida - Loss Prevention MXRC03</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #FFF700;
-      --primary-dark: #e6df00;
-      --bg-color: #474747;
-      --text-main: #2d3436;
-      --text-secondary: #636e72;
-      --card-bg: #ffffff;
-      --border-radius-lg: 20px;
-      --border-radius-sm: 10px;
-      --shadow-card: 0 10px 20px rgba(0,0,0,0.15);
+      --corp-navy: #1B365D;
+      --corp-slate: #1E293B;
+      --corp-yellow: #FFE600;
+      --corp-yellow-hover: #f2da00;
+      --bg-page: #0F172A;
+      --card-bg: #FFFFFF;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --border-light: #CBD5E1;
     }
 
-    * { box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
-    
-    body { 
-      margin: 0; background: var(--bg-color); display: flex; justify-content: center; 
-      padding: 20px; color: var(--text-main); min-height: 100vh;
+    * { box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+      color: var(--text-main);
+      min-height: 100vh;
     }
 
-    .main-wrapper { width: 100%; max-width: 850px; display: flex; flex-direction: column; gap: 20px; }
-
-    .main-header { 
-      background: var(--card-bg); padding: 25px; text-align: center; 
-      border-radius: var(--border-radius-lg); box-shadow: var(--shadow-card);
-      border-left: 6px solid var(--primary-color);
+    .main-wrapper {
+      width: 100%;
+      max-width: 860px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-    .main-header h1 { margin: 0; font-size: 24px; font-weight: 800; color: #111; text-transform: uppercase; }
-    .main-header p { margin: 5px 0 0; font-size: 14px; color: var(--text-secondary); font-weight: 600; }
 
-    .body-form { display: flex; flex-direction: column; gap: 20px; }
-    .form-card { background: var(--card-bg); border-radius: var(--border-radius-lg); padding: 25px; box-shadow: var(--shadow-card); }
-    .card-title { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+    /* ENCABEZADO DEL FORMULARIO */
+    .main-header {
+      background: var(--card-bg);
+      padding: 24px 28px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      border-top: 6px solid var(--corp-yellow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-    .grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .form-group { margin-bottom: 15px; }
+    .main-header h1 {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--corp-navy);
+      letter-spacing: -0.3px;
+      text-transform: uppercase;
+    }
 
-    label { font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
-    input, select { width: 100%; padding: 12px 15px; border: 2px solid #e1e1e1; border-radius: var(--border-radius-sm); outline: none; font-size: 14px; color: var(--text-main); background-color: #fbfbfb; }
-    input:focus, select:focus { border-color: #111; background-color: #ffffff; }
-    input[type="file"] { padding: 10px; background: #f1f3f4; border: 2px dashed #ccc; cursor: pointer; }
+    .main-header p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .badge-lp {
+      background: var(--corp-navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .body-form { display: flex; flex-direction: column; gap: 18px; }
+
+    .form-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--corp-navy);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #F1F5F9;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 14px; }
+
+    label {
+      font-size: 11.5px;
+      color: #475569;
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border-light);
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      color: var(--text-main);
+      background-color: #F8FAFC;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--corp-navy);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.12);
+    }
+
+    input[type="file"] {
+      padding: 9px;
+      background: #F1F5F9;
+      border: 1.5px dashed #94A3B8;
+      cursor: pointer;
+      font-size: 12.5px;
+    }
 
     .folio-preview {
-      margin-top: 6px; font-size: 12px; font-weight: 700; color: #2d3277;
-      background: #f0f4ff; padding: 6px 10px; border-radius: 6px; display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--corp-navy);
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 5px 10px;
+      border-radius: 6px;
+      display: inline-block;
     }
 
     .error-msg {
-      color: #d63031; font-size: 12px; font-weight: 600; margin-top: 5px; display: none;
+      color: #DC2626;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-top: 5px;
+      display: none;
     }
 
-    .btn-submit { 
-      width: 100%; padding: 18px; background: var(--primary-color); color: #000; border: none; 
-      border-radius: var(--border-radius-lg); font-size: 18px; font-weight: 800; cursor: pointer; 
-      margin-top: 10px; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); 
-      text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 10px;
+    /* BOTONES DUALES DE IMPRESIÓN */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 6px;
+      margin-bottom: 30px;
     }
-    .btn-submit:hover { background: var(--primary-dark); }
-    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
 
-    #spinner { display: none; text-align: center; color: #111; font-weight: bold; background: white; padding: 15px; border-radius: var(--border-radius-sm); }
-    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #111; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px auto; }
+    .btn-action {
+      width: 100%;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.15s, background 0.2s;
+    }
+
+    .btn-acta {
+      background: var(--corp-yellow);
+      color: #0F172A;
+    }
+    .btn-acta:hover { background: var(--corp-yellow-hover); transform: translateY(-2px); }
+
+    .btn-formato {
+      background: var(--corp-navy);
+      color: #FFFFFF;
+      border: 2px solid #334155;
+    }
+    .btn-formato:hover { background: #132744; transform: translateY(-2px); }
+
+    .btn-action:disabled { background: #94A3B8; color: #F8FAFC; cursor: not-allowed; transform: none; }
+
+    #spinner {
+      display: none;
+      text-align: center;
+      color: var(--corp-navy);
+      font-weight: 700;
+      font-size: 13.5px;
+      background: white;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .loader {
+      border: 4px solid #E2E8F0;
+      border-top: 4px solid var(--corp-navy);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 8px auto;
+    }
+
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     /* =========================================================
-       PLANTILLAS DE IMPRESIÓN (LAYOUT EXACTO DE TUS CAPTURAS)
+       ESTILOS CORPORATIVOS DE IMPRESIÓN (1 HOJA POR DOCUMENTO)
        ========================================================= */
     #print-area { display: none; }
 
     @media print {
-      @page { size: letter portrait; margin: 10mm; }
-      body { background: white !important; padding: 0 !important; margin: 0 !important; display: block !important; }
-      .main-wrapper { display: none !important; }
-      #print-area { display: block !important; width: 100%; font-family: Arial, sans-serif !important; color: #000; }
-      
-      .page-break { page-break-after: always; }
-      
-      /* HOJA 1: CONSTANCIA DE CONTEO */
-      .acta-container { padding: 25px 35px; font-family: Arial, sans-serif; }
-      .acta-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
-      .acta-folio-box { text-align: left; font-weight: bold; font-style: italic; font-size: 12px; line-height: 1.5; }
-      .acta-title { text-align: center; font-weight: bold; font-style: italic; font-size: 14px; margin: 20px 0; }
-      .acta-tipo { text-align: center; font-weight: bold; font-style: italic; font-size: 13px; margin-bottom: 25px; }
-      .acta-body { font-size: 12.5px; line-height: 1.6; text-align: justify; margin-bottom: 50px; }
-      .firmas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px 40px; margin-top: 30px; text-align: center; font-style: italic; font-size: 11.5px; }
-      .firma-linea { border-top: 1px solid #000; padding-top: 4px; margin-top: 30px; }
+      @page {
+        size: letter portrait;
+        margin: 8mm;
+      }
 
-      /* HOJA 2: FORMATO DE SALIDA RC03 (EXACTO A TU CAPTURA) */
-      .formato-container { width: 100%; font-family: Arial, sans-serif; font-size: 10px; border: 1.5px solid #000; }
-      .top-section { display: flex; width: 100%; border-bottom: 1.5px solid #000; }
-      .datos-col { width: 36%; border-right: 1.5px solid #000; }
-      .ine-col { width: 64%; display: flex; flex-direction: column; }
-      
-      .black-bar {
-        background: #000 !important; color: #fff !important; font-weight: bold;
-        text-align: center; padding: 4px; font-size: 10px; text-transform: uppercase;
-        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .main-wrapper { display: none !important; }
+      #print-area { display: block !important; width: 100%; color: #0F172A; }
+
+      /* Control de visibilidad según el botón presionado */
+      #print-area.solo-acta #doc-formato { display: none !important; }
+      #print-area.solo-acta #doc-acta { display: block !important; }
+
+      #print-area.solo-formato #doc-acta { display: none !important; }
+      #print-area.solo-formato #doc-formato { display: block !important; }
+
+      /* ---------------------------------------------------------
+         DOCUMENTO 1: ACTA CORPORATIVA (LOSS PREVENTION)
+         --------------------------------------------------------- */
+      .acta-sheet {
+        border: 1.5px solid #1B365D;
+        padding: 26px 34px;
+        min-height: 255mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .acta-top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #1B365D;
+        padding-bottom: 14px;
+        margin-bottom: 22px;
+      }
+
+      .brand-block { display: flex; flex-direction: column; }
+      .brand-name { font-size: 22px; font-weight: 800; color: #1B365D; letter-spacing: -0.5px; }
+      .brand-dept { font-size: 10.5px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+      .folio-card {
+        border: 1.5px solid #1B365D;
+        background: #F8FAFC !important;
+        padding: 8px 14px;
+        border-radius: 4px;
+        text-align: right;
+      }
+      .folio-card div { font-size: 11px; color: #334155; margin-bottom: 2px; }
+      .folio-card strong { color: #1B365D; font-size: 12px; }
+
+      .acta-banner {
+        background: #1B365D !important;
+        color: #FFFFFF !important;
+        text-align: center;
+        padding: 10px 14px;
+        font-size: 13.5px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        border-left: 6px solid #FFE600;
+        margin-bottom: 18px;
+      }
+
+      .acta-meta-strip {
+        display: flex;
+        justify-content: space-between;
+        background: #F1F5F9 !important;
+        border: 1px solid #CBD5E1;
+        padding: 8px 14px;
+        font-size: 11.5px;
+        margin-bottom: 22px;
+      }
+
+      .acta-legal-body {
+        font-size: 12.5px;
+        line-height: 1.75;
+        text-align: justify;
+        color: #1E293B;
+        margin-bottom: 24px;
+      }
+
+      .acta-legal-body p { margin: 0 0 14px 0; }
+
+      .acta-summary-box {
+        border: 1px solid #CBD5E1;
+        background: #F8FAFC !important;
+        padding: 12px 16px;
+        margin-bottom: 28px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        text-align: center;
+      }
+      .sum-item span { display: block; font-size: 9.5px; color: #64748B; text-transform: uppercase; font-weight: 700; }
+      .sum-item strong { display: block; font-size: 14px; color: #1B365D; margin-top: 2px; }
+
+      .firmas-section-title {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #1B365D;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border-bottom: 1px solid #CBD5E1;
+        padding-bottom: 4px;
+        margin-bottom: 18px;
+      }
+
+      .firmas-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 36px;
+      }
+
+      .firma-box {
+        text-align: center;
+        padding-top: 22px;
+      }
+      .firma-nombre {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: #0F172A;
+        min-height: 16px;
+        margin-bottom: 4px;
+      }
+      .firma-linea {
+        border-top: 1.5px solid #334155;
+        padding-top: 4px;
+        font-size: 9.5px;
+        font-weight: 600;
+        color: #475569;
+        text-transform: uppercase;
+      }
+
+      .acta-footer {
+        border-top: 1px solid #CBD5E1;
+        padding-top: 8px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: #64748B;
+      }
+
+      /* ---------------------------------------------------------
+         DOCUMENTO 2: FORMATO DE SALIDA RC03 (1 SOLA HOJA COMPACTA)
+         --------------------------------------------------------- */
+      .formato-sheet {
+        border: 1.5px solid #1B365D;
+        width: 100%;
+        background: #FFFFFF;
+      }
+
+      .fmt-header {
+        background: #1B365D !important;
+        color: #FFFFFF !important;
+        padding: 8px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid #FFE600;
+      }
+      .fmt-header-title { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+      .fmt-header-sub { font-size: 10px; font-weight: 600; color: #E2E8F0; }
+
+      .top-section {
+        display: flex;
+        width: 100%;
+        border-bottom: 1.5px solid #1B365D;
+      }
+
+      .datos-col {
+        width: 39%;
+        border-right: 1.5px solid #1B365D;
+      }
+
+      .ine-col {
+        width: 61%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sec-bar {
+        background: #1E293B !important;
+        color: #FFFFFF !important;
+        font-weight: 700;
+        text-align: center;
+        padding: 4px 6px;
+        font-size: 9.5px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
       }
 
       .datos-table { width: 100%; border-collapse: collapse; }
-      .datos-table td { border-bottom: 1px solid #e0e0e0; padding: 3.5px 6px; font-size: 9.5px; }
-      .datos-table td.lbl { font-weight: bold; width: 48%; text-align: left; }
-      .datos-table td.val { width: 52%; text-align: center; }
+      .datos-table td {
+        border-bottom: 1px solid #E2E8F0;
+        padding: 3px 6px;
+        font-size: 9px;
+        line-height: 1.25;
+      }
+      .datos-table td.lbl {
+        font-weight: 700;
+        color: #334155;
+        background: #F8FAFC !important;
+        width: 47%;
+      }
+      .datos-table td.val {
+        color: #0F172A;
+        width: 53%;
+        text-align: center;
+        font-weight: 500;
+      }
 
-      .ine-boxes { display: flex; flex: 1; min-height: 225px; }
-      .ine-box { width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6px; position: relative; }
-      .ine-box:first-child { border-right: 1px solid #ccc; }
-      .ine-box img { max-width: 100%; max-height: 205px; object-fit: contain; }
-      .ine-label { font-size: 9px; color: #555; margin-top: 4px; }
+      .ine-boxes {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: space-around;
+        padding: 6px;
+        gap: 8px;
+        background: #FFFFFF;
+      }
 
-      /* SECCIÓN INFERIOR: EVIDENCIA FOTOGRÁFICA */
-      .evidencia-section { padding: 8px 12px 12px 12px; }
-      .evidencia-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
-      .evidencia-row-center { display: flex; justify-content: center; }
-      .foto-card { border: 1px solid #ccc; padding: 4px; text-align: center; background: #fff; }
-      .foto-card.center-card { width: 52%; }
-      .foto-card img { width: 100%; height: 185px; object-fit: contain; display: block; margin: 0 auto; }
-      .foto-caption { font-size: 9.5px; font-weight: bold; text-align: left; padding-top: 3px; text-transform: uppercase; }
+      .ine-box {
+        width: 49%;
+        height: 165px;
+        border: 1px solid #CBD5E1;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        background: #F8FAFC !important;
+      }
+
+      .ine-box img {
+        max-width: 100%;
+        max-height: 142px;
+        object-fit: contain;
+      }
+
+      .ine-label {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: #475569;
+        margin-top: 3px;
+        text-transform: uppercase;
+      }
+
+      /* EVIDENCIA FOTOGRÁFICA COMPACTA (5 FOTOS EN 1 HOJA) */
+      .evidencia-section {
+        padding: 8px 10px;
+        background: #FFFFFF;
+      }
+
+      .evidencia-row-top {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .evidencia-row-bottom {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        width: 68%;
+        margin: 0 auto;
+      }
+
+      .foto-card {
+        border: 1px solid #CBD5E1;
+        border-radius: 4px;
+        padding: 4px;
+        background: #F8FAFC !important;
+        text-align: center;
+      }
+
+      .foto-card img {
+        width: 100%;
+        height: 128px;
+        object-fit: contain;
+        background: #FFFFFF;
+        display: block;
+      }
+
+      .foto-caption {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: #1B365D;
+        text-align: center;
+        padding-top: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
     }
 
-    @media (max-width: 600px) { .grid-row { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .grid-row, .actions-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
 <div class="main-wrapper">
   <div class="main-header">
-    <h1>📋 ACTA Y FORMATO DE SALIDA</h1>
-    <p>Loss Prevention MXRC03</p>
+    <div>
+      <h1>Acta y Formato de Salida</h1>
+      <p>Control de Operación y Evidencia Fotográfica • MXRC03</p>
+    </div>
+    <span class="badge-lp">Loss Prevention</span>
   </div>
   
   <form id="formulario" class="body-form">
     <div class="form-card">
-      <div class="card-title"><span>📝</span><span>Información General</span></div>
+      <div class="card-title"><span>01.</span><span>Información General del Folio</span></div>
       <div class="grid-row">
         <div class="form-group">
           <label>Tipo de Salida</label>
@@ -159,22 +579,22 @@
 
       <div class="grid-row">
         <div class="form-group">
-          <label>⏱️ Hora Inicio</label>
+          <label>Hora Inicio</label>
           <input type="time" name="hrinicio" required>
         </div>
         <div class="form-group">
-          <label>🏁 Hora Finalización</label>
+          <label>Hora Finalización</label>
           <input type="time" name="hrfinalizacion" required>
         </div>
       </div>
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>👥</span><span>Responsables de Proceso</span></div>
+      <div class="card-title"><span>02.</span><span>Responsables y Firmas del Acto</span></div>
       <div class="grid-row">
         <div class="form-group">
           <label>TL Retiros</label>
-          <input type="text" name="teamResponsable" required placeholder="Nombre del Team Leader">
+          <input type="text" name="teamResponsable" required placeholder="Nombre completo">
         </div>
         <div class="form-group">
           <label>Responsable de Carga</label>
@@ -184,244 +604,295 @@
 
       <div class="grid-row">
         <div class="form-group">
-          <label>Auditor LP</label>
+          <label>Auditor Loss Prevention</label>
           <input type="text" name="auditorLP" required placeholder="Auditor presente">
         </div>
         <div class="form-group">
-          <label>Testigo de LP</label>
-          <input type="text" name="testigoLP">
+          <label>Testigo Loss Prevention</label>
+          <input type="text" name="testigoLP" placeholder="Opcional">
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
           <label>Testigo Retiros 1°</label>
-          <input type="text" name="testigo1">
+          <input type="text" name="testigo1" placeholder="Opcional">
         </div>
         <div class="form-group">
           <label>Testigo Retiros 2°</label>
-          <input type="text" name="testigo2">
+          <input type="text" name="testigo2" placeholder="Opcional">
         </div>
       </div>
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>🚛</span><span>Datos del Vehículo</span></div>
+      <div class="card-title"><span>03.</span><span>Datos del Transporte y Unidad</span></div>
       <div class="form-group">
-        <label>Nombre de Operador</label>
-        <input type="text" name="nombreOperador" required>
+        <label>Nombre de Operador (Chofer)</label>
+        <input type="text" name="nombreOperador" required placeholder="Nombre completo del operador">
       </div>
 
       <div class="grid-row">
         <div class="form-group">
           <label>Tipo de Unidad</label>
-          <input type="text" name="tipoUnidad" required>
+          <input type="text" name="tipoUnidad" required placeholder="Ej: Kenworth, Rabón, Camioneta">
         </div>
         <div class="form-group">
-          <label>🔢 Placas</label>
-          <input type="text" name="placas" required>
+          <label>Placas</label>
+          <input type="text" name="placas" required placeholder="Placas de la unidad">
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
-          <label>Cortina</label>
-          <input type="text" name="cortina">
+          <label>Cortina de Carga</label>
+          <input type="text" name="cortina" placeholder="Ej: 94">
         </div>
         <div class="form-group">
-          <label>Número de Marchamos</label>
-          <input type="text" name="marchamo" required>
+          <label>Código de Marchamos</label>
+          <input type="text" name="marchamo" required placeholder="Folios de marchamos">
         </div>
       </div>
 
       <div class="form-group">
-        <label>💬 Observaciones</label>
-        <input type="text" name="observaciones">
+        <label>Observaciones</label>
+        <input type="text" name="observaciones" placeholder="Comentarios adicionales">
       </div>
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>📸</span><span>Evidencia Fotográfica</span></div>
+      <div class="card-title"><span>04.</span><span>Evidencia Fotográfica</span></div>
       <div class="grid-row">
         <div class="form-group">
-          <label>🆔 Foto INE 1 (Frente)</label>
+          <label>Foto INE 1 (Frente)</label>
           <input type="file" id="foto1" accept="image/*">
         </div>
         <div class="form-group">
-          <label>🆔 Foto INE 2 (Reverso)</label>
+          <label>Foto INE 2 (Reverso)</label>
           <input type="file" id="foto2" accept="image/*">
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
-          <label>📦 Unidad Vacía</label>
+          <label>Unidad Vacía</label>
           <input type="file" id="foto3" accept="image/*">
         </div>      
         <div class="form-group">
-          <label>🚚 Unidad Llena</label>
+          <label>Unidad Llena</label>
           <input type="file" id="foto4" accept="image/*">
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
-          <label>🔒 Marchamo 1</label>
+          <label>Marchamo 1</label>
           <input type="file" id="foto5" accept="image/*">
         </div>
         <div class="form-group">
-          <label>🔒 Marchamo 2</label>
+          <label>Marchamo 2</label>
           <input type="file" id="foto6" accept="image/*">
         </div>
       </div>
 
       <div class="form-group">
-        <label>🔒 Marchamo 3</label>
+        <label>Marchamo 3</label>
         <input type="file" id="foto7" accept="image/*">
       </div>
     </div>
 
     <div id="spinner">
       <div class="loader"></div>
-      <div>Consultando Folio en SALIDAS 2026 y generando PDF...</div>
+      <div id="spinner-text">Sincronizando folio con SALIDAS 2026 y preparando documento...</div>
     </div>
 
-    <button type="button" class="btn-submit" onclick="enviar()">
-      <span>🖨️</span> Consultar Folio e Imprimir PDF
-    </button>
+    <!-- DOS BOTONES SEPARADOS -->
+    <div class="actions-grid">
+      <button type="button" class="btn-action btn-acta" onclick="procesarYImprimir('acta')">
+        <span>📄</span> Imprimir Acta (Hoja 1)
+      </button>
+      <button type="button" class="btn-action btn-formato" onclick="procesarYImprimir('formato')">
+        <span>📋</span> Imprimir Formato (Hoja 2)
+      </button>
+    </div>
   </form>
 </div>
 
 <!-- =========================================================
-     PLANTILLAS OCULTAS PARA IMPRESIÓN PDF
+     PLANTILLAS CORPORATIVAS PARA IMPRESIÓN (SEPARADAS)
      ========================================================= -->
 <div id="print-area">
-  <!-- HOJA 1: ACTA -->
-  <div class="acta-container page-break">
-    <div class="acta-header">
-      <div>
-        <strong style="font-size: 20px; color: #2d3277;">mercado envíos</strong>
+  
+  <!-- DOCUMENTO 1: CONSTANCIA DE CONTEO (ACTA) -->
+  <div id="doc-acta" class="acta-sheet">
+    <div>
+      <div class="acta-top-bar">
+        <div class="brand-block">
+          <span class="brand-name">mercado envíos</span>
+          <span class="brand-dept">Seguridad Patrimonial • Loss Prevention MXRC03</span>
+        </div>
+        <div class="folio-card">
+          <div>FOLIO: <strong id="p-folio-header">---</strong></div>
+          <div>FECHA: <strong id="p-fecha-larga">---</strong></div>
+        </div>
       </div>
-      <div class="acta-folio-box">
-        <div>FOLIO: &nbsp;&nbsp;&nbsp;<span id="p-folio-header"></span></div>
-        <div>FECHA: &nbsp;&nbsp;&nbsp;<span id="p-fecha-larga"></span></div>
+
+      <div class="acta-banner">
+        Constancia de Conteo y Salida de Productos de Rezago — Retiros
+      </div>
+
+      <div class="acta-meta-strip">
+        <div><strong>CENTRO OPERATIVO:</strong> MXRC03 (Cuautitlán, Edo. Méx.)</div>
+        <div><strong>TIPO DE SALIDA:</strong> <span id="p-tipo-salida" style="text-transform:uppercase; font-weight:700; color:#1B365D;"></span></div>
+      </div>
+
+      <div class="acta-legal-body">
+        <p>
+          En el Estado de México, siendo el día <strong id="p-fecha-corta"></strong>, en las instalaciones del Receiving Center <strong>MXRC03</strong> ubicado en Camino de Rancho Nuevo La Virgen, Hacienda del Jardín, C.P. 54984, Cuautitlán, Estado de México, se procede a levantar la presente acta administrativa de control y verificación.
+        </p>
+        <p>
+          Por medio de la presente se hace constar el confinamiento, validación física y despacho de <strong id="p-ids">0</strong> ID's (tarimas/contenedores) con un total consolidado de <strong id="p-piezas">0</strong> piezas, mismas que se encuentran detalladas en el registro oficial <em>"Tracking LI Rezagos MXRC03"</em> compartido por el área operativa, dejando constancia de la auditoría preventiva ejecutada por el departamento de <strong>Loss Prevention</strong> correspondiente al lote establecido por el área de Retiros.
+        </p>
+      </div>
+
+      <div class="acta-summary-box">
+        <div class="sum-item"><span>Folio de Control</span><strong id="p-sum-folio">---</strong></div>
+        <div class="sum-item"><span>Total ID's Auditados</span><strong id="p-sum-ids">0</strong></div>
+        <div class="sum-item"><span>Total Piezas Verificadas</span><strong id="p-sum-piezas">0</strong></div>
+      </div>
+
+      <div class="firmas-section-title">Validación y Firmas de Conformidad</div>
+      <div class="firmas-grid">
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-team">&nbsp;</div>
+          <div class="firma-linea">Team Leader / Representante de Retiros</div>
+        </div>
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-desp">&nbsp;</div>
+          <div class="firma-linea">Responsable de Carga / Despacho Retiros</div>
+        </div>
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-auditor">&nbsp;</div>
+          <div class="firma-linea">Auditor Loss Prevention</div>
+        </div>
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-testigolp">&nbsp;</div>
+          <div class="firma-linea">Testigo Loss Prevention</div>
+        </div>
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-t1">&nbsp;</div>
+          <div class="firma-linea">Testigo de Asistencia 1°</div>
+        </div>
+        <div class="firma-box">
+          <div class="firma-nombre" id="p-firma-t2">&nbsp;</div>
+          <div class="firma-linea">Testigo de Asistencia 2°</div>
+        </div>
       </div>
     </div>
 
-    <div class="acta-title">
-      CONSTANCIA DE CONTEO DE PRODUCTOS DE REZAGO<br>RETIROS
-    </div>
-
-    <div class="acta-tipo">
-      TIPO DE SALIDA: &nbsp;&nbsp;&nbsp;<span id="p-tipo-salida"></span>
-    </div>
-
-    <div class="acta-body">
-      <p>
-        En el Estado de México, del día <span id="p-fecha-corta"></span>, en el RC03 ubicado en Camino de Rancho Nuevo La Virgen, Hacienda del Jardín, 54984 Cuautitlán, Estado de México, se procede a levantar la presente acta.
-      </p>
-      <p>
-        Hace constar el confinamiento de <span id="p-ids">0</span> ID's con un total de <span id="p-piezas">0</span> piezas que se detallan en el archivo "tracking LI Rezagos MXRC03" compartido por el área, haciendo mención de la auditoría realizada por parte del equipo de Loss Prevention correspondiente al Lote establecido por el área de Retiros de Receiving Center.
-      </p>
-    </div>
-
-    <div class="firmas-grid">
-      <div><div id="p-firma-team">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de RETIROS</div></div>
-      <div><div id="p-firma-desp">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de RETIROS</div></div>
-      <div><div id="p-firma-auditor">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de LOSS PREVENTION</div></div>
-      <div><div id="p-firma-testigolp">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de LOSS PREVENTION</div></div>
-      <div><div id="p-firma-t1">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de TESTIGO</div></div>
-      <div><div id="p-firma-t2">&nbsp;</div><div class="firma-linea">Intervienen en el presente acto, por parte de TESTIGO</div></div>
+    <div class="acta-footer">
+      <span>DOCUMENTO INTERNO DE CONTROL • LOSS PREVENTION MXRC03</span>
+      <span>FOLIO: <span id="p-footer-folio"></span></span>
     </div>
   </div>
 
-  <!-- HOJA 2: FORMATO DE SALIDA RC03 -->
-  <div class="formato-container">
+  <!-- DOCUMENTO 2: FORMATO DE SALIDA Y EVIDENCIA (1 HOJA) -->
+  <div id="doc-formato" class="formato-sheet">
+    <div class="fmt-header">
+      <div>
+        <div class="fmt-header-title">Formato de Control de Salida y Evidencia Fotográfica</div>
+        <div class="fmt-header-sub">Loss Prevention • Receiving Center MXRC03</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:9px; color:#CBD5E1;">FOLIO DE OPERACIÓN</div>
+        <div style="font-size:12px; font-weight:800; color:#FFE600;" id="f-header-folio">---</div>
+      </div>
+    </div>
+
     <div class="top-section">
-      <!-- COLUMNA IZQUIERDA: DATOS PERSONALES Y DE UNIDAD -->
+      <!-- DATOS OPERATIVOS Y UNIDAD -->
       <div class="datos-col">
-        <div class="black-bar">DATOS PERSONALES</div>
+        <div class="sec-bar">Datos de Operación</div>
         <table class="datos-table">
           <tr><td class="lbl">Fecha de carga:</td><td class="val" id="f-fecha"></td></tr>
           <tr><td class="lbl">Hora de inicio:</td><td class="val" id="f-hrinicio"></td></tr>
-          <tr><td class="lbl">Hora de termino:</td><td class="val" id="f-hrfin"></td></tr>
-          <tr><td class="lbl">Cortina carga:</td><td class="val" id="f-cortina"></td></tr>
-          <tr><td class="lbl">Responsable operaciones:</td><td class="val" id="f-resp"></td></tr>
+          <tr><td class="lbl">Hora de término:</td><td class="val" id="f-hrfin"></td></tr>
+          <tr><td class="lbl">Cortina de carga:</td><td class="val" id="f-cortina"></td></tr>
+          <tr><td class="lbl">Resp. Operaciones:</td><td class="val" id="f-resp"></td></tr>
           <tr><td class="lbl">Auditor LP:</td><td class="val" id="f-auditor"></td></tr>
-          <tr><td class="lbl">Total de ID's despachados:</td><td class="val" id="f-ids"></td></tr>
-          <tr><td class="lbl">Tipo de carga:</td><td class="val" id="f-tipo"></td></tr>
+          <tr><td class="lbl">ID's despachados:</td><td class="val" id="f-ids"></td></tr>
+          <tr><td class="lbl">Tipo de salida:</td><td class="val" id="f-tipo"></td></tr>
         </table>
-        <div class="black-bar">DATOS DE LA UNIDAD</div>
+        <div class="sec-bar">Datos de la Unidad</div>
         <table class="datos-table">
-          <tr><td class="lbl">Chofer:</td><td class="val" id="f-chofer"></td></tr>
+          <tr><td class="lbl">Operador / Chofer:</td><td class="val" id="f-chofer"></td></tr>
           <tr><td class="lbl">Tipo de unidad:</td><td class="val" id="f-unidad"></td></tr>
           <tr><td class="lbl">Placas:</td><td class="val" id="f-placas"></td></tr>
           <tr><td class="lbl">Código Marchamos:</td><td class="val" id="f-marchamos"></td></tr>
           <tr><td class="lbl">Observaciones:</td><td class="val" id="f-obs"></td></tr>
-          <tr><td class="lbl" style="border:none;">Folio:</td><td class="val" style="border:none; font-weight:bold;" id="f-folio"></td></tr>
+          <tr><td class="lbl" style="border:none;">Folio:</td><td class="val" style="border:none; font-weight:700; color:#1B365D;" id="f-folio"></td></tr>
         </table>
       </div>
 
-      <!-- COLUMNA DERECHA: IDENTIFICACIÓN DE CONDUCTOR (INE 1 Y 2) -->
+      <!-- IDENTIFICACIÓN DEL CONDUCTOR -->
       <div class="ine-col">
-        <div class="black-bar">IDENTIFICACIÓN DE CONDUCTOR</div>
+        <div class="sec-bar">Identificación Oficial del Conductor</div>
         <div class="ine-boxes">
           <div class="ine-box">
             <img id="img-ine1" src="" style="display:none;">
-            <span class="ine-label" id="lbl-ine1">Foto INE 1 (Frente)</span>
+            <span class="ine-label">INE Frente</span>
           </div>
           <div class="ine-box">
             <img id="img-ine2" src="" style="display:none;">
-            <span class="ine-label" id="lbl-ine2">Foto INE 2 (Reverso)</span>
+            <span class="ine-label">INE Reverso</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN INFERIOR: EVIDENCIA FOTOGRÁFICA (2 + 2 + 1 CENTRADA) -->
-    <div class="black-bar">EVIDENCIA FOTOGRÁFICA</div>
+    <!-- EVIDENCIA FOTOGRÁFICA DE UNIDAD Y MARCHAMOS (COMPACTA EN 1 HOJA) -->
+    <div class="sec-bar">Evidencia Fotográfica de Unidad y Sellos de Seguridad</div>
     <div class="evidencia-section">
-      <!-- Fila 1: Unidad Vacía y Unidad Llena -->
-      <div class="evidencia-row-2">
+      <!-- Fila Superior: 3 fotos -->
+      <div class="evidencia-row-top">
         <div class="foto-card">
           <img id="img-foto3" src="" style="display:none;">
-          <div class="foto-caption">Unidad Vacía</div>
+          <div class="foto-caption">1. Unidad Vacía</div>
         </div>
         <div class="foto-card">
           <img id="img-foto4" src="" style="display:none;">
-          <div class="foto-caption">Unidad Llena</div>
+          <div class="foto-caption">2. Unidad Llena</div>
         </div>
-      </div>
-
-      <!-- Fila 2: Marchamo 1 y Marchamo 2 -->
-      <div class="evidencia-row-2">
         <div class="foto-card">
           <img id="img-foto5" src="" style="display:none;">
-          <div class="foto-caption">MARCHAMO 1</div>
-        </div>
-        <div class="foto-card">
-          <img id="img-foto6" src="" style="display:none;">
-          <div class="foto-caption">MARCHAMO 2</div>
+          <div class="foto-caption">3. Marchamo 1</div>
         </div>
       </div>
 
-      <!-- Fila 3: Marchamo 3 Centrado -->
-      <div class="evidencia-row-center">
-        <div class="foto-card center-card">
+      <!-- Fila Inferior: 2 fotos centradas -->
+      <div class="evidencia-row-bottom">
+        <div class="foto-card">
+          <img id="img-foto6" src="" style="display:none;">
+          <div class="foto-caption">4. Marchamo 2</div>
+        </div>
+        <div class="foto-card">
           <img id="img-foto7" src="" style="display:none;">
-          <div class="foto-caption">MARCHAMO 3</div>
+          <div class="foto-caption">5. Marchamo 3</div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
 <script>
-// URL de tu Cloudflare Worker conectado a tu Service Account
 const API_WORKER_URL = "https://acta-rc03-api.abraham-velazquezvelazquez.workers.dev";
 
+// Evita guardar duplicados en Google Sheets si el usuario imprime primero el Acta y luego el Formato
+let ultimoFolioGuardado = "";
+let cacheTotales = { totalIds: 0, totalPiezas: 0 };
+
 function validarTresDigitos(input) {
-  // Elimina cualquier caracter que no sea número
   input.value = input.value.replace(/\D/g, '');
   const errorEl = document.getElementById("errorActa");
   if (input.value.length > 0 && input.value.length !== 3) {
@@ -435,14 +906,9 @@ function validarTresDigitos(input) {
 function construirFolio() {
   const tipo = document.getElementById("tipoSalida").value;
   const num = document.getElementById("numeroActa").value.trim();
-  const anio3 = String(new Date().getFullYear()).slice(-3); // Ej: 2026 -> "026"
+  const anio3 = String(new Date().getFullYear()).slice(-3);
 
-  const prefijos = {
-    "Donación": "DON",
-    "Reciclaje": "REC",
-    "Destrucción": "DES"
-  };
-
+  const prefijos = { "Donación": "DON", "Reciclaje": "REC", "Destrucción": "DES" };
   const prefijo = prefijos[tipo] || "XXX";
   const numTexto = num.length === 3 ? num : "___";
   return `${prefijo}-RET-RC03-${numTexto}-${anio3}`;
@@ -461,7 +927,7 @@ async function procesarImagen(file) {
       img.onload = () => {
         const canvas = document.createElement('canvas');
         let width = img.width, height = img.height;
-        const MAX = 1000;
+        const MAX = 900;
         if (width > height && width > MAX) { height *= MAX / width; width = MAX; }
         else if (height > MAX) { width *= MAX / height; height = MAX; }
         canvas.width = width; canvas.height = height;
@@ -495,11 +961,10 @@ function obtenerFechas() {
   };
 }
 
-async function enviar() {
+async function procesarYImprimir(tipoDocumento) {
   const form = document.getElementById("formulario");
   const numActa = document.getElementById("numeroActa").value.trim();
 
-  // Bloqueo estricto de 3 dígitos
   if (!/^\d{3}$/.test(numActa)) {
     document.getElementById("errorActa").style.display = "block";
     alert("⚠️ Error: El Número de Acta requiere exactamente 3 dígitos (ejemplo: 014).");
@@ -513,9 +978,9 @@ async function enviar() {
     return;
   }
 
-  const btn = document.querySelector(".btn-submit");
+  const botones = document.querySelectorAll(".btn-action");
   const spinner = document.getElementById("spinner");
-  btn.disabled = true;
+  botones.forEach(b => b.disabled = true);
   spinner.style.display = "block";
 
   try {
@@ -523,11 +988,8 @@ async function enviar() {
     const folioGenerado = construirFolio();
     const fechas = obtenerFechas();
 
-    // 1. Consultar datos en "SALIDAS 2026" (Sheet 1kjEwMEmc3bt6rv9gMARQYxuDqsxAu65uwwKLSwiBKpI)
-    let totalIds = 0;
-    let totalPiezas = 0;
-
-    if (API_WORKER_URL && !API_WORKER_URL.includes("TU-WORKER")) {
+    // Consultar SALIDAS 2026 y guardar en Datos solo si este folio no se ha procesado aún en esta sesión
+    if (ultimoFolioGuardado !== folioGenerado) {
       const resp = await fetch(API_WORKER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -539,20 +1001,30 @@ async function enviar() {
       });
       const resultado = await resp.json();
       if (resultado.error) {
-        alert("⚠️ Aviso al buscar folio: " + resultado.error);
+        alert("⚠️ Aviso al consultar folio: " + resultado.error);
       } else {
-        totalIds = resultado.totalIds || 0;
-        totalPiezas = resultado.totalPiezas || 0;
+        cacheTotales = {
+          totalIds: resultado.totalIds || 0,
+          totalPiezas: resultado.totalPiezas || 0
+        };
+        ultimoFolioGuardado = folioGenerado;
       }
     }
 
-    // 2. Llenar Hoja 1 (Acta)
+    const { totalIds, totalPiezas } = cacheTotales;
+
+    // Llenar Acta (Documento 1)
     document.getElementById("p-folio-header").textContent = folioGenerado;
     document.getElementById("p-fecha-larga").textContent = fechas.larga;
     document.getElementById("p-fecha-corta").textContent = fechas.corta;
     document.getElementById("p-tipo-salida").textContent = datos.tipoSalida;
     document.getElementById("p-ids").textContent = totalIds;
     document.getElementById("p-piezas").textContent = totalPiezas;
+    document.getElementById("p-sum-folio").textContent = folioGenerado;
+    document.getElementById("p-sum-ids").textContent = totalIds;
+    document.getElementById("p-sum-piezas").textContent = totalPiezas;
+    document.getElementById("p-footer-folio").textContent = folioGenerado;
+
     document.getElementById("p-firma-team").textContent = datos.teamResponsable || "\u00A0";
     document.getElementById("p-firma-desp").textContent = datos.responsableCarga || "\u00A0";
     document.getElementById("p-firma-auditor").textContent = datos.auditorLP || "\u00A0";
@@ -560,7 +1032,8 @@ async function enviar() {
     document.getElementById("p-firma-t1").textContent = datos.testigo1 || "\u00A0";
     document.getElementById("p-firma-t2").textContent = datos.testigo2 || "\u00A0";
 
-    // 3. Llenar Hoja 2 (Formato de Salida RC03)
+    // Llenar Formato (Documento 2)
+    document.getElementById("f-header-folio").textContent = folioGenerado;
     document.getElementById("f-fecha").textContent = fechas.corta;
     document.getElementById("f-hrinicio").textContent = formatearHora12(datos.hrinicio);
     document.getElementById("f-hrfin").textContent = formatearHora12(datos.hrfinalizacion);
@@ -576,35 +1049,35 @@ async function enviar() {
     document.getElementById("f-obs").textContent = datos.observaciones;
     document.getElementById("f-folio").textContent = folioGenerado;
 
-    // 4. Cargar Imágenes en las posiciones exactas
-    const idsFotos = ["foto1", "foto2", "foto3", "foto4", "foto5", "foto6", "foto7"];
-    const idsImgs  = ["img-ine1", "img-ine2", "img-foto3", "img-foto4", "img-foto5", "img-foto6", "img-foto7"];
-
-    for (let i = 0; i < idsFotos.length; i++) {
-      const file = document.getElementById(idsFotos[i]).files[0];
-      const imgEl = document.getElementById(idsImgs[i]);
-      if (file) {
-        imgEl.src = await procesarImagen(file);
-        imgEl.style.display = "block";
-        if (i === 0) document.getElementById("lbl-ine1").style.display = "none";
-        if (i === 1) document.getElementById("lbl-ine2").style.display = "none";
-      } else {
-        imgEl.style.display = "none";
-        if (i === 0) document.getElementById("lbl-ine1").style.display = "block";
-        if (i === 1) document.getElementById("lbl-ine2").style.display = "block";
+    // Cargar imágenes solo si se va a imprimir el Formato
+    if (tipoDocumento === "formato") {
+      const idsFotos = ["foto1", "foto2", "foto3", "foto4", "foto5", "foto6", "foto7"];
+      const idsImgs  = ["img-ine1", "img-ine2", "img-foto3", "img-foto4", "img-foto5", "img-foto6", "img-foto7"];
+      for (let i = 0; i < idsFotos.length; i++) {
+        const file = document.getElementById(idsFotos[i]).files[0];
+        const imgEl = document.getElementById(idsImgs[i]);
+        if (file) {
+          imgEl.src = await procesarImagen(file);
+          imgEl.style.display = "block";
+        } else {
+          imgEl.style.display = "none";
+        }
       }
     }
 
-    // 5. Abrir diálogo de impresión PDF
+    // Activar únicamente el documento elegido
+    const printArea = document.getElementById("print-area");
+    printArea.className = tipoDocumento === "acta" ? "solo-acta" : "solo-formato";
+
     setTimeout(() => {
       window.print();
-      btn.disabled = false;
+      botones.forEach(b => b.disabled = false);
       spinner.style.display = "none";
-    }, 500);
+    }, 450);
 
   } catch (e) {
     alert("Error: " + e.message);
-    btn.disabled = false;
+    botones.forEach(b => b.disabled = false);
     spinner.style.display = "none";
   }
 }
