@@ -68,16 +68,38 @@
       font-weight: 600;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .badge-lp {
       background: var(--corp-navy);
       color: #fff;
       font-size: 11px;
       font-weight: 700;
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 6px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
     }
+
+    .btn-reset-top {
+      background: #FEE2E2;
+      color: #B91C1C;
+      border: 1px solid #FECACA;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+    .btn-reset-top:hover { background: #FECACA; }
 
     .body-form { display: flex; flex-direction: column; gap: 18px; }
 
@@ -141,6 +163,50 @@
       font-size: 12.5px;
     }
 
+    /* VISTA PREVIA Y BOTÓN ELIMINAR FOTO */
+    .photo-preview-wrap {
+      display: none;
+      margin-top: 8px;
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 8px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .photo-preview-wrap img {
+      width: 56px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid #CBD5E1;
+    }
+
+    .photo-file-info {
+      flex: 1;
+      font-size: 11.5px;
+      color: #334155;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-remove-photo {
+      background: #DC2626;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-remove-photo:hover { background: #B91C1C; }
+
     .folio-preview {
       margin-top: 6px;
       font-size: 12px;
@@ -188,13 +254,12 @@
       display: none;
     }
 
-    /* BOTONES DUALES DE IMPRESIÓN */
+    /* BOTONES DE ACCIÓN */
     .actions-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
       margin-top: 6px;
-      margin-bottom: 30px;
     }
 
     .btn-action {
@@ -227,6 +292,23 @@
       border: 2px solid #334155;
     }
     .btn-formato:hover { background: #132744; transform: translateY(-2px); }
+
+    .btn-clear-bottom {
+      width: 100%;
+      padding: 13px;
+      background: #334155;
+      color: #F8FAFC;
+      border: 1px solid #475569;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 30px;
+      transition: background 0.2s;
+    }
+    .btn-clear-bottom:hover { background: #DC2626; border-color: #EF4444; }
 
     .btn-action:disabled { background: #94A3B8; color: #F8FAFC; cursor: not-allowed; transform: none; }
 
@@ -283,9 +365,7 @@
       #print-area.solo-formato #doc-acta { display: none !important; }
       #print-area.solo-formato #doc-formato { display: block !important; }
 
-      /* ---------------------------------------------------------
-         DOCUMENTO 1: ACTA CORPORATIVA (LOSS PREVENTION)
-         --------------------------------------------------------- */
+      /* DOCUMENTO 1: ACTA CORPORATIVA */
       .acta-sheet {
         border: 1.5px solid #1B365D;
         padding: 26px 34px;
@@ -412,9 +492,7 @@
         color: #64748B;
       }
 
-      /* ---------------------------------------------------------
-         DOCUMENTO 2: FORMATO DE SALIDA RC03 (1 SOLA HOJA COMPACTA)
-         --------------------------------------------------------- */
+      /* DOCUMENTO 2: FORMATO DE SALIDA RC03 (1 SOLA HOJA COMPACTA) */
       .formato-sheet {
         border: 1.5px solid #1B365D;
         width: 100%;
@@ -518,7 +596,6 @@
         text-transform: uppercase;
       }
 
-      /* EVIDENCIA FOTOGRÁFICA COMPACTA (5 FOTOS EN 1 HOJA) */
       .evidencia-section {
         padding: 8px 10px;
         background: #FFFFFF;
@@ -579,7 +656,10 @@
       <h1>Acta y Formato de Salida</h1>
       <p>Control de Operación y Evidencia Fotográfica • MXRC03</p>
     </div>
-    <span class="badge-lp">Loss Prevention</span>
+    <div class="header-actions">
+      <button type="button" class="btn-reset-top" onclick="limpiarFormulario()">🗑️ Limpiar</button>
+      <span class="badge-lp">Loss Prevention</span>
+    </div>
   </div>
   
   <form id="formulario" class="body-form">
@@ -742,52 +822,87 @@
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>04.</span><span>Evidencia Fotográfica</span></div>
+      <div class="card-title"><span>04.</span><span>Evidencia Fotográfica (Con vista previa y eliminación individual)</span></div>
       <div class="grid-row">
         <div class="form-group">
           <label>Foto INE 1 (Frente)</label>
-          <input type="file" id="foto1" accept="image/*">
+          <input type="file" id="foto1" accept="image/*" onchange="mostrarVistaPrevia('foto1')">
+          <div class="photo-preview-wrap" id="prev-foto1">
+            <img id="thumb-foto1" src="">
+            <span class="photo-file-info" id="name-foto1"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto1')">✕ Eliminar</button>
+          </div>
         </div>
         <div class="form-group">
           <label>Foto INE 2 (Reverso)</label>
-          <input type="file" id="foto2" accept="image/*">
+          <input type="file" id="foto2" accept="image/*" onchange="mostrarVistaPrevia('foto2')">
+          <div class="photo-preview-wrap" id="prev-foto2">
+            <img id="thumb-foto2" src="">
+            <span class="photo-file-info" id="name-foto2"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto2')">✕ Eliminar</button>
+          </div>
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
           <label>Unidad Vacía</label>
-          <input type="file" id="foto3" accept="image/*">
+          <input type="file" id="foto3" accept="image/*" onchange="mostrarVistaPrevia('foto3')">
+          <div class="photo-preview-wrap" id="prev-foto3">
+            <img id="thumb-foto3" src="">
+            <span class="photo-file-info" id="name-foto3"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto3')">✕ Eliminar</button>
+          </div>
         </div>      
         <div class="form-group">
           <label>Unidad Llena</label>
-          <input type="file" id="foto4" accept="image/*">
+          <input type="file" id="foto4" accept="image/*" onchange="mostrarVistaPrevia('foto4')">
+          <div class="photo-preview-wrap" id="prev-foto4">
+            <img id="thumb-foto4" src="">
+            <span class="photo-file-info" id="name-foto4"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto4')">✕ Eliminar</button>
+          </div>
         </div>
       </div>
 
       <div class="grid-row">
         <div class="form-group">
           <label>Marchamo 1</label>
-          <input type="file" id="foto5" accept="image/*">
+          <input type="file" id="foto5" accept="image/*" onchange="mostrarVistaPrevia('foto5')">
+          <div class="photo-preview-wrap" id="prev-foto5">
+            <img id="thumb-foto5" src="">
+            <span class="photo-file-info" id="name-foto5"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto5')">✕ Eliminar</button>
+          </div>
         </div>
         <div class="form-group">
           <label>Marchamo 2</label>
-          <input type="file" id="foto6" accept="image/*">
+          <input type="file" id="foto6" accept="image/*" onchange="mostrarVistaPrevia('foto6')">
+          <div class="photo-preview-wrap" id="prev-foto6">
+            <img id="thumb-foto6" src="">
+            <span class="photo-file-info" id="name-foto6"></span>
+            <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto6')">✕ Eliminar</button>
+          </div>
         </div>
       </div>
 
       <div class="form-group">
         <label>Marchamo 3</label>
-        <input type="file" id="foto7" accept="image/*">
+        <input type="file" id="foto7" accept="image/*" onchange="mostrarVistaPrevia('foto7')">
+        <div class="photo-preview-wrap" id="prev-foto7">
+          <img id="thumb-foto7" src="">
+          <span class="photo-file-info" id="name-foto7"></span>
+          <button type="button" class="btn-remove-photo" onclick="eliminarFoto('foto7')">✕ Eliminar</button>
+        </div>
       </div>
     </div>
 
     <div id="spinner">
       <div class="loader"></div>
-      <div id="spinner-text">Sincronizando folio con SALIDAS 2026 y preparando documento...</div>
+      <div id="spinner-text">Guardando datos y fotografías en Google Sheets y preparando documento...</div>
     </div>
 
-    <!-- DOS BOTONES SEPARADOS -->
+    <!-- BOTONES DE IMPRESIÓN -->
     <div class="actions-grid">
       <button type="button" class="btn-action btn-acta" onclick="procesarYImprimir('acta')">
         <span>📄</span> Imprimir Acta (Hoja 1)
@@ -796,6 +911,11 @@
         <span>📋</span> Imprimir Formato (Hoja 2)
       </button>
     </div>
+
+    <!-- BOTÓN LIMPIAR FORMULARIO -->
+    <button type="button" class="btn-clear-bottom" onclick="limpiarFormulario()">
+      🗑️ Limpiar todo el formulario para un nuevo registro
+    </button>
   </form>
 </div>
 
@@ -964,15 +1084,75 @@ const API_WORKER_URL = "https://acta-rc03-api.abraham-velazquezvelazquez.workers
 let ultimoFolioGuardado = "";
 let cacheTotales = { totalIds: 0, totalPiezas: 0 };
 
-// Inicializar la fecha de carga con el día de hoy por defecto (modificable por el usuario)
-window.addEventListener("DOMContentLoaded", () => {
+function fijarFechaHoy() {
   const hoy = new Date();
   const yyyy = hoy.getFullYear();
   const mm = String(hoy.getMonth() + 1).padStart(2, '0');
   const dd = String(hoy.getDate()).padStart(2, '0');
   document.getElementById("fechaCarga").value = `${yyyy}-${mm}-${dd}`;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  fijarFechaHoy();
   actualizarFolioPreview();
 });
+
+/* =========================================================
+   GESTIÓN DE VISTAS PREVIAS Y ELIMINACIÓN DE FOTOS
+   ========================================================= */
+function mostrarVistaPrevia(idInput) {
+  const input = document.getElementById(idInput);
+  const wrap = document.getElementById("prev-" + idInput);
+  const thumb = document.getElementById("thumb-" + idInput);
+  const nameEl = document.getElementById("name-" + idInput);
+
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      thumb.src = e.target.result;
+      nameEl.textContent = file.name;
+      wrap.style.display = "flex";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    eliminarFoto(idInput);
+  }
+}
+
+function eliminarFoto(idInput) {
+  const input = document.getElementById(idInput);
+  const wrap = document.getElementById("prev-" + idInput);
+  const thumb = document.getElementById("thumb-" + idInput);
+  const nameEl = document.getElementById("name-" + idInput);
+
+  input.value = "";
+  thumb.src = "";
+  nameEl.textContent = "";
+  wrap.style.display = "none";
+}
+
+function limpiarFormulario() {
+  if (!confirm("¿Estás seguro de que deseas borrar todos los datos y fotografías del formulario?")) {
+    return;
+  }
+
+  document.getElementById("formulario").reset();
+
+  // Eliminar todas las fotografías y vistas previas
+  for (let i = 1; i <= 7; i++) {
+    eliminarFoto("foto" + i);
+  }
+
+  // Reiniciar estado interno, alertas y fecha por defecto
+  ultimoFolioGuardado = "";
+  cacheTotales = { totalIds: 0, totalPiezas: 0 };
+  document.getElementById("errorActa").style.display = "none";
+  document.getElementById("resultadoVerificacion").style.display = "none";
+  fijarFechaHoy();
+  actualizarFolioPreview();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 function validarTresDigitos(input) {
   input.value = input.value.replace(/\D/g, '');
@@ -1059,8 +1239,13 @@ async function verificarFolioEnVivo() {
   }
 }
 
-async function procesarImagen(file) {
-  if (!file) return null;
+/* =========================================================
+   COMPRESIÓN DUAL DE IMÁGENES:
+   - maxDim = 900 -> Alta calidad para PDF
+   - maxDim = 220 -> Miniatura ligera (< 45,000 chars) para celda de Google Sheets
+   ========================================================= */
+async function procesarImagen(file, maxDim = 900, quality = 0.75) {
+  if (!file) return "";
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -1068,12 +1253,18 @@ async function procesarImagen(file) {
       img.onload = () => {
         const canvas = document.createElement('canvas');
         let width = img.width, height = img.height;
-        const MAX = 900;
-        if (width > height && width > MAX) { height *= MAX / width; width = MAX; }
-        else if (height > MAX) { width *= MAX / height; height = MAX; }
-        canvas.width = width; canvas.height = height;
-        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL('image/jpeg', 0.75));
+        if (width > height && width > maxDim) { height *= maxDim / width; width = maxDim; }
+        else if (height > maxDim) { width *= maxDim / height; height = maxDim; }
+        canvas.width = Math.round(width);
+        canvas.height = Math.round(height);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        let dataUrl = canvas.toDataURL('image/jpeg', quality);
+        // Garantiza que nunca rebase el límite de 50,000 caracteres de celda en Google Sheets
+        if (maxDim <= 250 && dataUrl.length > 48000) {
+          dataUrl = canvas.toDataURL('image/jpeg', 0.45);
+        }
+        resolve(dataUrl);
       };
       img.src = e.target.result;
     };
@@ -1138,24 +1329,31 @@ async function procesarYImprimir(tipoDocumento) {
     const folioGenerado = construirFolio();
     const fechas = formatearFechaSeleccionada(datos.fechaCarga);
 
-    // Mantener compatibles las columnas I y J vacías en el envío hacia Sheets
     datos.testigo1 = "";
     datos.testigo2 = "";
     datos.fechaGeneracion = fechas.corta;
 
+    // Guardar en Google Sheets (incluyendo las 7 fotos comprimidas en columnas Q:W)
     if (ultimoFolioGuardado !== folioGenerado) {
+      const fotosSheets = {};
+      for (let i = 1; i <= 7; i++) {
+        const file = document.getElementById("foto" + i).files[0];
+        fotosSheets["foto" + i] = file ? await procesarImagen(file, 220, 0.65) : "";
+      }
+
       const resp = await fetch(API_WORKER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           accion: "buscarFolioYGuardar",
           folio: folioGenerado,
-          datosFormulario: datos
+          datosFormulario: datos,
+          fotosSheets
         })
       });
       const resultado = await resp.json();
       if (resultado.error) {
-        alert("⚠️ Aviso al consultar folio: " + resultado.error);
+        alert("⚠️ Aviso al guardar/consultar folio: " + resultado.error);
       } else {
         cacheTotales = {
           totalIds: resultado.totalIds || 0,
@@ -1167,7 +1365,7 @@ async function procesarYImprimir(tipoDocumento) {
 
     const { totalIds, totalPiezas } = cacheTotales;
 
-    // Llenar Acta (Documento 1) con la Fecha de Carga elegida
+    // Llenar Acta (Documento 1)
     document.getElementById("p-folio-header").textContent = folioGenerado;
     document.getElementById("p-fecha-larga").textContent = fechas.larga;
     document.getElementById("p-fecha-corta").textContent = fechas.corta;
@@ -1184,7 +1382,7 @@ async function procesarYImprimir(tipoDocumento) {
     document.getElementById("p-firma-auditor").textContent = datos.auditorLP || "\u00A0";
     document.getElementById("p-firma-testigolp").textContent = datos.testigoLP || "\u00A0";
 
-    // Llenar Formato (Documento 2) con la Fecha de Carga elegida
+    // Llenar Formato (Documento 2)
     document.getElementById("f-header-folio").textContent = folioGenerado;
     document.getElementById("f-fecha").textContent = fechas.corta;
     document.getElementById("f-hrinicio").textContent = formatearHora12(datos.hrinicio);
@@ -1201,7 +1399,7 @@ async function procesarYImprimir(tipoDocumento) {
     document.getElementById("f-obs").textContent = datos.observaciones;
     document.getElementById("f-folio").textContent = folioGenerado;
 
-    // Cargar imágenes solo si se va a imprimir el Formato
+    // Cargar imágenes en alta calidad para el PDF
     if (tipoDocumento === "formato") {
       const idsFotos = ["foto1", "foto2", "foto3", "foto4", "foto5", "foto6", "foto7"];
       const idsImgs  = ["img-ine1", "img-ine2", "img-foto3", "img-foto4", "img-foto5", "img-foto6", "img-foto7"];
@@ -1209,7 +1407,7 @@ async function procesarYImprimir(tipoDocumento) {
         const file = document.getElementById(idsFotos[i]).files[0];
         const imgEl = document.getElementById(idsImgs[i]);
         if (file) {
-          imgEl.src = await procesarImagen(file);
+          imgEl.src = await procesarImagen(file, 900, 0.78);
           imgEl.style.display = "block";
         } else {
           imgEl.style.display = "none";
