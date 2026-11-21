@@ -153,6 +153,33 @@
       display: inline-block;
     }
 
+    .btn-verify {
+      margin-top: 8px;
+      padding: 7px 12px;
+      background: var(--corp-navy);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-verify:hover { background: #132744; }
+
+    .verify-box {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
     .error-msg {
       color: #DC2626;
       font-size: 11.5px;
@@ -573,7 +600,13 @@
           <label>Número de Acta (3 dígitos obligatorios)</label>
           <input type="text" name="folio" id="numeroActa" maxlength="3" inputmode="numeric" required placeholder="Ej: 014" oninput="validarTresDigitos(this)">
           <div class="error-msg" id="errorActa">⚠️ Se requieren exactamente 3 dígitos numéricos en el acta (Ej: 014).</div>
-          <div class="folio-preview" id="folioPreview">Folio generado: ---</div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:6px;">
+            <div class="folio-preview" id="folioPreview" style="margin-top:0;">Folio generado: ---</div>
+            <button type="button" class="btn-verify" style="margin-top:0;" onclick="verificarFolioEnVivo()">
+              🔍 Verificar en SALIDAS 2026
+            </button>
+          </div>
+          <div id="resultadoVerificacion" class="verify-box"></div>
         </div>
       </div>
 
@@ -916,6 +949,63 @@ function construirFolio() {
 
 function actualizarFolioPreview() {
   document.getElementById("folioPreview").textContent = "Folio generado: " + construirFolio();
+}
+
+async function verificarFolioEnVivo() {
+  const tipo = document.getElementById("tipoSalida").value;
+  const numActa = document.getElementById("numeroActa").value.trim();
+  const box = document.getElementById("resultadoVerificacion");
+
+  if (!tipo || !/^\d{3}$/.test(numActa)) {
+    alert("⚠️ Selecciona el Tipo de Salida e ingresa los 3 dígitos del Número de Acta antes de verificar.");
+    return;
+  }
+
+  const folio = construirFolio();
+  box.style.display = "block";
+  box.style.background = "#F1F5F9";
+  box.style.border = "1px solid #CBD5E1";
+  box.style.color = "#1E293B";
+  box.innerHTML = `⏳ Buscando <strong>${folio}</strong> en la hoja <em>SALIDAS 2026</em>...`;
+
+  try {
+    const resp = await fetch(API_WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ accion: "soloConsultar", folio })
+    });
+    const data = await resp.json();
+
+    if (data.error) {
+      box.style.background = "#FEF2F2";
+      box.style.border = "1px solid #FECACA";
+      box.style.color = "#991B1B";
+      box.innerHTML = `❌ <strong>Error de conexión/permisos:</strong> ${data.error}`;
+      return;
+    }
+
+    if (data.totalIds === 0) {
+      box.style.background = "#FFFBEB";
+      box.style.border = "1px solid #FDE68A";
+      box.style.color = "#92400E";
+      box.innerHTML = `⚠️ <strong>Conexión exitosa, pero no se encontraron filas</strong> con el folio <code>${folio}</code> en la columna T de <em>SALIDAS 2026</em>.`;
+    } else {
+      box.style.background = "#ECFDF5";
+      box.style.border = "1px solid #A7F3D0";
+      box.style.color = "#065F46";
+      box.innerHTML = `
+        ✅ <strong>Lectura correcta para ${folio}:</strong><br>
+        • <strong>Total ID's encontrados:</strong> ${data.totalIds}<br>
+        • <strong>Total Piezas sumadas:</strong> ${data.totalPiezas}<br>
+        • <strong>ID's detectados:</strong> ${data.listaIds.join(", ")}
+      `;
+    }
+  } catch (err) {
+    box.style.background = "#FEF2F2";
+    box.style.border = "1px solid #FECACA";
+    box.style.color = "#991B1B";
+    box.innerHTML = `❌ <strong>Error de red:</strong> ${err.message}`;
+  }
 }
 
 async function procesarImagen(file) {
