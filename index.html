@@ -654,7 +654,7 @@
   <div class="main-header">
     <div>
       <h1>Acta y Formato de Salida</h1>
-      <p>Control de Operación y Evidencia Fotográfica • MXRC03</p>
+      <p>Control y Evidencia Salidas de Rezagos  • MXRC03</p>
     </div>
     <div class="header-actions">
       <button type="button" class="btn-reset-top" onclick="limpiarFormulario()">🗑️ Limpiar</button>
@@ -682,7 +682,7 @@
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:6px;">
             <div class="folio-preview" id="folioPreview" style="margin-top:0;">Folio generado: ---</div>
             <button type="button" class="btn-verify" style="margin-top:0;" onclick="verificarFolioEnVivo()">
-              🔍 Verificar en SALIDAS 2026
+              🔍 Detalle ID's registrados
             </button>
           </div>
           <div id="resultadoVerificacion" class="verify-box"></div>
@@ -712,7 +712,7 @@
         <div class="form-group">
           <label>TL Retiros</label>
           <select name="teamResponsable" required>
-            <option value="Ana Paola Cortes" selected>Ana Paola Cortes</option>
+            <option value="ANA PAOLA CORTES" selected>ANA PAOLA CORTES</option>
           </select>
         </div>
         <div class="form-group">
@@ -787,7 +787,7 @@
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>03.</span><span>Datos del Transporte y Unidad</span></div>
+      <div class="card-title"><span>03.</span><span>Datos del Operador y Unidad</span></div>
       <div class="form-group">
         <label>Nombre de Operador (Chofer)</label>
         <input type="text" name="nombreOperador" required placeholder="Nombre completo del operador">
@@ -799,8 +799,8 @@
           <input type="text" name="tipoUnidad" required placeholder="Ej: Kenworth, Rabón, Camioneta">
         </div>
         <div class="form-group">
-          <label>Placas</label>
-          <input type="text" name="placas" required placeholder="Placas de la unidad">
+          <label>PATENTE</label>
+          <input type="text" name="PATENTE" required placeholder="Placas de la unidad">
         </div>
       </div>
 
@@ -822,7 +822,7 @@
     </div>
 
     <div class="form-card">
-      <div class="card-title"><span>04.</span><span>Evidencia Fotográfica (Con vista previa y eliminación individual)</span></div>
+      <div class="card-title"><span>04.</span><span>Evidencia Fotográfica</span></div>
       <div class="grid-row">
         <div class="form-group">
           <label>Foto INE 1 (Frente)</label>
@@ -905,16 +905,16 @@
     <!-- BOTONES DE IMPRESIÓN -->
     <div class="actions-grid">
       <button type="button" class="btn-action btn-acta" onclick="procesarYImprimir('acta')">
-        <span>📄</span> Imprimir Acta (Hoja 1)
+        <span>📄</span> Imprimir Acta
       </button>
       <button type="button" class="btn-action btn-formato" onclick="procesarYImprimir('formato')">
-        <span>📋</span> Imprimir Formato (Hoja 2)
+        <span>📋</span> Imprimir Formato
       </button>
     </div>
 
     <!-- BOTÓN LIMPIAR FORMULARIO -->
     <button type="button" class="btn-clear-bottom" onclick="limpiarFormulario()">
-      🗑️ Limpiar todo el formulario para un nuevo registro
+      🗑️ Limpiar registro
     </button>
   </form>
 </div>
@@ -1219,7 +1219,7 @@ async function verificarFolioEnVivo() {
       box.style.background = "#FFFBEB";
       box.style.border = "1px solid #FDE68A";
       box.style.color = "#92400E";
-      box.innerHTML = `⚠️ <strong>Conexión exitosa, pero no se encontraron filas</strong> con el folio <code>${folio}</code> en la columna T de <em>SALIDAS 2026</em>.`;
+      box.innerHTML = `⚠️ <strong>Conexión exitosa, pero no se encontraron filas</strong> con el folio <code>${folio}</code> en <em>Seguimiento a Rezagos MXRC03</em>.`;
     } else {
       box.style.background = "#ECFDF5";
       box.style.border = "1px solid #A7F3D0";
